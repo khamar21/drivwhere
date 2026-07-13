@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -21,14 +20,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     if (passwordController.text.isEmpty ||
         confirmPasswordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please fill all fields")),
+        const SnackBar(
+          content: Text("Please fill all fields"),
+        ),
       );
       return;
     }
 
     if (passwordController.text != confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Passwords do not match")),
+        const SnackBar(
+          content: Text("Passwords do not match"),
+        ),
       );
       return;
     }
@@ -44,9 +47,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Password Reset Successfully")),
+      const SnackBar(
+        content: Text("Password Created Successfully"),
+      ),
     );
-
   }
 
   @override
@@ -54,148 +58,214 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xffFDF8F3),
+      backgroundColor: const Color(0xffFFF6E8),
 
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: size.width * .08,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 22,
+            vertical: 20,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
+          child: Column(
+            children: [
 
-                SizedBox(height: size.height * .05),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                ),
+                      const SizedBox(height: 20),
 
-                SizedBox(height: size.height * .03),
-
-                Image.asset(
-                  "assets/images/reset_password.png",
-                  height: 180,
-                ),
-
-                SizedBox(height: size.height * .05),
-
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Reset Password",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 10),
-
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Your new password must be different from your previous password.",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: size.height * .04),
-
-                TextField(
-                  controller: passwordController,
-                  obscureText: obscurePassword,
-                  decoration: InputDecoration(
-                    hintText: "New Password",
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        obscurePassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
+                      Image.asset(
+                        "assets/images/logo.png",
+                        height: 55,
                       ),
-                      onPressed: () {
-                        setState(() {
-                          obscurePassword = !obscurePassword;
-                        });
-                      },
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                ),
 
-                SizedBox(height: size.height * .025),
+                      const SizedBox(height: 35),
 
-                TextField(
-                  controller: confirmPasswordController,
-                  obscureText: obscureConfirmPassword,
-                  decoration: InputDecoration(
-                    hintText: "Confirm Password",
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        obscureConfirmPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
+                      const Text(
+                        "Create Password",
+                        style: TextStyle(
+                          fontSize: 42,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff980000),
+                        ),
                       ),
-                      onPressed: () {
-                        setState(() {
-                          obscureConfirmPassword =
-                              !obscureConfirmPassword;
-                        });
-                      },
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                ),
 
-                SizedBox(height: size.height * .05),
+                      const SizedBox(height: 10),
 
-                SizedBox(
-                  width: double.infinity,
-                  height: 55,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff7B1F1F),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
+                      const Text(
+                        "Enter password to secure your account.",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
+                        ),
                       ),
-                    ),
-                    onPressed: isLoading ? null : resetPassword,
-                    child: isLoading
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : const Text(
-                            "Reset Password",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
+
+                      const SizedBox(height: 40),
+
+                      const Text(
+                        "Password",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      TextField(
+                        controller: passwordController,
+                        obscureText: obscurePassword,
+                        decoration: InputDecoration(
+                          hintText: "Enter Password",
+
+                          filled: true,
+                          fillColor: Colors.white,
+
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 18,
+                          ),
+
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscurePassword = !obscurePassword;
+                              });
+                            },
+                            icon: Icon(
+                              obscurePassword
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: Colors.grey,
                             ),
                           ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Color(0xff980000),
+                            ),
+                          ),
+                        ),
+                      ),
+
+
+                      const SizedBox(height: 30),
+
+                                const Text(
+                                "Confirm Password",
+                                style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                ),
+                                ),
+
+                                const SizedBox(height: 10),
+
+                                TextField(
+                                controller: confirmPasswordController,
+                                obscureText: obscureConfirmPassword,
+                                decoration: InputDecoration(
+                                hintText: "Re-enter Password",
+
+                                filled: true,
+                                fillColor: Colors.white,
+
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 18,
+                                ),
+
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      obscureConfirmPassword = !obscureConfirmPassword;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    obscureConfirmPassword
+                                        ? Icons.visibility_off_outlined
+                                        : Icons.visibility_outlined,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: const BorderSide(
+                                    color: Color(0xff980000),
+                                  ),
+                                ),
+                                ),
+                                ),
+
+                                const SizedBox(height: 50),
+
+                                ],
+                                ),
+                                ),
+                                ),
+
+                                SizedBox(
+                                width: double.infinity,
+                                height: 56,
+                                child: ElevatedButton(
+                                onPressed: isLoading ? null : resetPassword,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xff980000),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: isLoading
+                                    ? const SizedBox(
+                                        height: 24,
+                                        width: 24,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 2,
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Confirm",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                ),
+                                ),
+
+                                const SizedBox(height: 10),
+
+                                ],
+                                ),
+                                ),
+                                ),
+                                );
+                                }
+                                }
