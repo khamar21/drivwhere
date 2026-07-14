@@ -1,10 +1,11 @@
-import 'package:drivehere/features/home/presentation/screens/login_screen.dart';
+import 'package:drivehere/core/routes/app_routes.dart';
+import 'package:drivehere/core/routes/route_names.dart';
+import 'package:drivehere/features/authentication/presentation/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(create: (_) => AuthProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      initialRoute: RouteNames.splash,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }
