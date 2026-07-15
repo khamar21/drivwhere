@@ -59,8 +59,8 @@ class SplashScreen extends StatelessWidget {
                         "Sign Up",
                         style: TextStyle(
                           color: AppColors.primary,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),

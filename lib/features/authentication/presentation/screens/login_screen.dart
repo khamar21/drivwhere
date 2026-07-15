@@ -394,7 +394,7 @@ class LoginScreen extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                 color: const Color(0xFF666666),
-                                                fontSize: size.width * .030,
+                                                fontSize: size.width * .028,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),

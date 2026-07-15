@@ -105,7 +105,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: constraints.maxHeight * .08),
+                  SizedBox(height: constraints.maxHeight * .06),
                   Image.asset(
                     "assets/images/logo.png",
                     width: constraints.maxWidth * .16,
@@ -198,7 +198,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .03),
+                 // SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );

@@ -116,7 +116,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
                   CustomButton(text: "Confirm", onPressed: _createPassword),
 
-                  SizedBox(height: constraints.maxHeight * .03),
+                //  SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );

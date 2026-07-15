@@ -210,7 +210,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     ),
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .03),
+               //   SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );

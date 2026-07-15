@@ -131,7 +131,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                   RichText(
                     text: TextSpan(
-                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                      style: const TextStyle(fontSize: 13, color: Colors.black),
                       children: [
                         const TextSpan(text: "Already have an account? "),
                         TextSpan(
@@ -174,7 +174,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     ),
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .03),
+                 // SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );
