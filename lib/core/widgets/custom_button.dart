@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
     this.textColor,
     this.width,
     this.height,
-    this.borderRadius = 10,
+    this.borderRadius = 12,
     this.margin,
   });
 
@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
           disabledBackgroundColor: Colors.grey.shade400,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
         child: isLoading
@@ -55,7 +55,7 @@ class CustomButton extends StatelessWidget {
             : Text(
                 text,
                 style: TextStyle(
-                  fontSize: size.width * .045,
+                  fontSize:  16,
                   fontWeight: FontWeight.w700,
                 ),
               ),

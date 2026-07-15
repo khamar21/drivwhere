@@ -36,21 +36,21 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
           Text(
             widget.labelText!,
             style: TextStyle(
-              fontSize: size.width * .042,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
               color: Colors.black87,
             ),
           ),
-          SizedBox(height: size.height * .01),
+          SizedBox(height: size.height * .003),
         ],
 
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(.12),
+                color: Colors.black.withOpacity(.10),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -62,6 +62,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             validator: widget.validator,
             onChanged: widget.onChanged,
             textInputAction: widget.textInputAction,
+            style: TextStyle(fontSize: 14),
             decoration: InputDecoration(
               hintText: widget.hintText,
               hintStyle: TextStyle(
@@ -84,6 +85,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
                       ? Icons.visibility_off_outlined
                       : Icons.visibility_outlined,
                   color: Colors.grey,
+                  size: 20,
                 ),
               ),
             ),

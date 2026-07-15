@@ -1,4 +1,6 @@
+import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -32,165 +34,151 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
-      backgroundColor: const Color(0xffFFF4D8),
+      backgroundColor: AppColors.bg,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * .06,
-                  vertical: size.height * .02,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: size.height * .08),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: constraints.maxWidth * .06,
+                vertical: constraints.maxHeight * .02,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: constraints.maxHeight * .04),
 
-                    /// Logo
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Image.asset(
-                        "assets/images/logo.png",
-                        width: size.width * .16,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      width: constraints.maxWidth * .16,
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .03),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                        fontSize: constraints.maxWidth * .08,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary,
                       ),
                     ),
+                  ),
 
-                    SizedBox(height: size.height * .04),
+                  SizedBox(height: constraints.maxHeight * .004),
 
-                    /// Heading
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                          fontSize: size.width * .10,
-                          fontWeight: FontWeight.w700,
-                          color: const Color(0xff990000),
-                        ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Enter registered email id or phone no.",
+                      style: TextStyle(
+                        fontSize: constraints.maxWidth * .040,
+                        color: const Color(0xFF787878),
                       ),
                     ),
+                  ),
 
-                    SizedBox(height: size.height * .005),
+                  SizedBox(height: constraints.maxHeight * .045),
 
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Enter registered email id or phone no.",
-                        style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: size.width * .035,
-                        ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Email or Phone no.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
+                  ),
 
-                    SizedBox(height: size.height * .045),
+                  SizedBox(height: constraints.maxHeight * .012),
 
-                    /// Label
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Email or Phone no.",
-                        style: TextStyle(
-                          fontSize: size.width * .043,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .012),
-
-                    /// TextField
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
-                            color: Colors.black.withOpacity(.15),
-                          ),
-                        ],
-                      ),
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          hintText: "Enter email",
-                          hintStyle: TextStyle(color: Colors.grey.shade500),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 18,
-                            vertical: 18,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .05),
-
-                    /// Login Text
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Already have an account? ",
-                            style: TextStyle(fontSize: size.width * .041),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            "Log In",
-                            style: TextStyle(
-                              color: const Color(0xffB30000),
-                              fontWeight: FontWeight.w600,
-                              fontSize: size.width * .041,
-                            ),
-                          ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                          color: Colors.black.withOpacity(.10),
                         ),
                       ],
                     ),
-
-                    SizedBox(height: size.height * .30),
-
-                    /// Button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 55,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffB30000),
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onPressed: _onConfirm,
-                        child: const Text(
-                          "Confirm",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
+                    child: TextFormField(
+                      controller: emailController,
+                      style: const TextStyle(fontSize: 14),
+                      decoration: InputDecoration(
+                        hintText: "Enter email",
+                        hintStyle: TextStyle(color: Colors.grey.shade500),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 18,
                         ),
                       ),
                     ),
+                  ),
 
-                    SizedBox(height: size.height * .03),
-                  ],
-                ),
+                  SizedBox(height: constraints.maxHeight * .025),
+
+                  RichText(
+                    text: TextSpan(
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                      children: [
+                        const TextSpan(text: "Already have an account? "),
+                        TextSpan(
+                          text: "Log In",
+                          style: const TextStyle(
+                            color: Color(0xffB30000),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pop(context);
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const Spacer(),
+
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xffB30000),
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: _onConfirm,
+                      child: const Text(
+                        "Confirm",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .03),
+                ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

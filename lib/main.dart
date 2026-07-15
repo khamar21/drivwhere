@@ -1,11 +1,21 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:drivehere/core/routes/app_routes.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/features/authentication/presentation/providers/auth_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (_) => AuthProvider(), child: MyApp()));
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => AuthProvider(),
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      builder: DevicePreview.appBuilder,
       initialRoute: RouteNames.splash,
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

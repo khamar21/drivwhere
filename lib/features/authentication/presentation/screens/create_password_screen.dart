@@ -51,83 +51,76 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.bg,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.only(
-                  left: size.width * .05,
-                  right: size.width * .05,
-                  bottom: size.height * .03,
-                  top: size.height * .02,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: size.height * .08),
-
-                    /// Logo
-                    Image.asset(
-                      "assets/images/logo.png",
-                      width: size.width * .16,
-                    ),
-
-                    SizedBox(height: size.height * .05),
-
-                    /// Title
-                    Text(
-                      "Create Password",
-                      style: TextStyle(
-                        fontSize: size.width * .10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primary,
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .008),
-
-                    Text(
-                      "Enter password to secure your account.",
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: size.width * .036,
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .05),
-
-                    CustomPasswordField(
-                      controller: passwordController,
-                      labelText: "Password",
-                      hintText: "Enter Password",
-                    ),
-
-                    SizedBox(height: size.height * .03),
-
-                    CustomPasswordField(
-                      controller: confirmPasswordController,
-                      labelText: "Confirm Password",
-                      hintText: "Re-enter Password",
-                      textInputAction: TextInputAction.done,
-                    ),
-
-                    SizedBox(height: size.height * .25),
-
-                    CustomButton(text: "Confirm", onPressed: _createPassword),
-
-                    SizedBox(height: size.height * .03),
-                  ],
-                ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Padding(
+              padding: EdgeInsets.only(
+                left: constraints.maxWidth * .05,
+                right: constraints.maxWidth * .05,
+                bottom: constraints.maxHeight * .03,
+                top: constraints.maxHeight * .02,
               ),
-            ),
-          ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: constraints.maxHeight * .08),
+
+                  Image.asset(
+                    "assets/images/logo.png",
+                    width: constraints.maxWidth * .16,
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .03),
+
+                  Text(
+                    "Create Password",
+                    style: TextStyle(
+                      fontSize: constraints.maxWidth * .08,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primary,
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .004),
+
+                  Text(
+                    "Enter password to secure your account.",
+                    style: TextStyle(
+                      fontSize: constraints.maxWidth * .040,
+                      color: const Color(0xFF787878),
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .05),
+
+                  CustomPasswordField(
+                    controller: passwordController,
+                    labelText: "Password",
+                    hintText: "Enter Password",
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .03),
+
+                  CustomPasswordField(
+                    controller: confirmPasswordController,
+                    labelText: "Confirm Password",
+                    hintText: "Re-enter Password",
+                    textInputAction: TextInputAction.done,
+                  ),
+
+                  const Spacer(),
+
+                  CustomButton(text: "Confirm", onPressed: _createPassword),
+
+                  SizedBox(height: constraints.maxHeight * .03),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +31,19 @@ class _VerificationScreenState extends State<VerificationScreen> {
   }
 
   Widget otpBox(int index, Size size) {
-    return SizedBox(
-      width: size.width * .15,
+    return Container(
+      width: size.width * .18,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
       child: TextField(
         controller: controllers[index],
         focusNode: focusNodes[index],
@@ -46,18 +58,22 @@ class _VerificationScreenState extends State<VerificationScreen> {
           counterText: "",
           hintText: "-",
           hintStyle: TextStyle(
-            fontSize: size.width * .08,
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
+            fontSize: size.width * .07,
+            color: Colors.black87,
+            fontWeight: FontWeight.w600,
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: Colors.transparent,
           contentPadding: EdgeInsets.symmetric(vertical: size.height * .022),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
           ),
@@ -75,124 +91,118 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
-      backgroundColor: const Color(0xffFFF4D8),
+      backgroundColor: AppColors.bg,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * .05,
-                  vertical: size.height * .02,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: size.height * .08),
-                    Image.asset(
-                      "assets/images/logo.png",
-                      width: size.width * .16,
-                    ),
-                    SizedBox(height: size.height * .05),
-
-                    Text(
-                      "Verify Account",
-                      style: TextStyle(
-                        fontSize: size.width * .10,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xff990000),
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .008),
-
-                    Text(
-                      "An OTP will be sent to you.",
-                      style: TextStyle(
-                        fontSize: size.width * .035,
-                        color: Colors.grey,
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .05),
-
-                    /// OTP Boxes
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(
-                        4,
-                        (index) => otpBox(index, size),
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .02),
-
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: size.width * .04,
-                          color: Colors.black,
-                        ),
-                        children: const [
-                          TextSpan(text: "Your OTP will expire in "),
-                          TextSpan(
-                            text: "1:26 sec",
-                            style: TextStyle(
-                              color: Color(0xffC00000),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .30),
-
-                    SizedBox(
-                      width: double.infinity,
-                      height: 55,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffB00000),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (widget.isResetPasswordFlow) {
-                            Navigator.pushNamed(
-                              context,
-                              RouteNames.resetPassword,
-                            );
-                          } else {
-                            Navigator.pushNamed(
-                              context,
-                              RouteNames.createPassword,
-                            );
-                          }
-                        },
-                        
-                        child: const Text(
-                          "Verify",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: size.height * .03),
-                  ],
-                ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: constraints.maxWidth * .05,
+                vertical: constraints.maxHeight * .02,
               ),
-            ),
-          ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: constraints.maxHeight * .08),
+                  Image.asset(
+                    "assets/images/logo.png",
+                    width: constraints.maxWidth * .16,
+                  ),
+                  SizedBox(height: constraints.maxHeight * .035),
+
+                  Text(
+                    "Verify Account",
+                    style: TextStyle(
+                      fontSize: constraints.maxWidth * .08,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primary,
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .004),
+
+                  Text(
+                    "An OTP will be sent to you.",
+                    style: TextStyle(
+                      fontSize: constraints.maxWidth * .040,
+                      color: const Color(0xFF787878),
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .05),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      4,
+                      (index) => otpBox(
+                        index,
+                        Size(constraints.maxWidth, constraints.maxHeight),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .02),
+
+                  RichText(
+                    text: TextSpan(
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                      children: const [
+                        TextSpan(text: "Your OTP will expire in "),
+                        TextSpan(
+                          text: "1:26 sec",
+                          style: TextStyle(
+                            color: Color(0xffC00000),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const Spacer(),
+
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xffB00000),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {
+                        if (widget.isResetPasswordFlow) {
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.resetPassword,
+                          );
+                        } else {
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.createPassword,
+                          );
+                        }
+                      },
+                      child: const Text(
+                        "Verify",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: constraints.maxHeight * .03),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

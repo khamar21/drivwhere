@@ -1,7 +1,6 @@
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/custom_text_field.dart';
@@ -29,7 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.bg,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Column(
@@ -49,17 +48,16 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     Image.asset(
                       "assets/images/logo.png",
-                      width: size.width * .16,
+                      width: size.width * .18,
                     ),
 
-                    SizedBox(height: size.height * .03),
+                    SizedBox(height: size.height * .02),
 
-                    /// Title
                     Text(
                       "Create an account",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: size.width * .095,
+                        fontSize: 34,
                         fontWeight: FontWeight.bold,
                         color: AppColors.primary,
                       ),
@@ -78,40 +76,36 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     SizedBox(height: size.height * .04),
 
-                    /// White Card
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(size.width * .05),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          /// Sign Up
                           Text(
                             "Sign up",
                             style: TextStyle(
-                              fontSize: size.width * .085,
+                              fontSize: 28,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
 
-                          SizedBox(height: size.height * .04),
+                          SizedBox(height: size.height * .03),
 
-                          /// Email Label
                           Text(
                             "Email or Phone no.",
                             style: TextStyle(
-                              fontSize: size.width * .045,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
 
-                          SizedBox(height: size.height * .015),
+                          SizedBox(height: size.height * .010),
 
-                          /// TextField
                           CustomTextField(
                             controller: emailController,
                             hintText: "Enter email or phone no",
@@ -120,57 +114,77 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           SizedBox(height: size.height * .015),
 
-                          /// Checkbox Row
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Checkbox(
-                                value: isChecked,
-                                activeColor: AppColors.primary,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isChecked = value!;
-                                  });
-                                },
-                              ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isChecked = !isChecked;
+                              });
+                            },
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  width: 16,
+                                  height: 16,
+                                  decoration: BoxDecoration(
+                                    color: isChecked
+                                        ? const Color(0xffB00000)
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                      color: const Color(0xffD0D0D0),
+                                      // width: 2,
+                                    ),
+                                  ),
+                                  child: isChecked
+                                      ? const Icon(
+                                          Icons.check,
+                                          size: 10,
+                                          color: Colors.white,
+                                        )
+                                      : null,
+                                ),
 
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 14),
+                                const SizedBox(width: 6),
+
+                                Expanded(
                                   child: RichText(
-                                   // softWrap: false,
-                                    text: TextSpan(
+                                    text: const TextSpan(
                                       style: TextStyle(
-                                        color: Colors.black87,
-                                        fontSize: size.width * .030,
-                                      ),
-                                      children: const [
-                                        TextSpan(
-                                          text: "Do you agree to Drivewheres ",
-                                        ),
+                                        color: Colors.black,
+                                        fontSize: 11,
 
+                                        // fontWeight: FontWeight.w400,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: "Do you agree to Drivwheres ",
+                                        ),
                                         TextSpan(
                                           text: "Terms & conditions",
-                                          style: TextStyle(color: Colors.red),
+                                          style: TextStyle(
+                                            color: Color(0xffB00000),
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
 
                           SizedBox(height: size.height * .025),
 
-                          /// OR Divider
                           Row(
                             children: [
                               const Expanded(child: Divider(thickness: 1)),
 
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                  horizontal: 14,
                                 ),
                                 child: Text(
                                   "OR",
@@ -187,82 +201,100 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           SizedBox(height: size.height * .03),
 
-                          // =======================
-                          // Social Login Buttons
-                          // =======================
                           Row(
                             children: [
                               Expanded(
                                 child: SizedBox(
-                                  height: 48,
-                                  child: OutlinedButton.icon(
+                                  height: 38,
+                                  child: OutlinedButton(
                                     onPressed: () {},
                                     style: OutlinedButton.styleFrom(
-                                      minimumSize: const Size(
-                                        double.infinity,
-                                        48,
+                                      elevation: 0,
+                                      backgroundColor: Color(0xFFFAFAFA),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 4,
                                       ),
-                                      side: BorderSide(
-                                        color: Colors.grey.shade300,
+                                      side: const BorderSide(
+                                        color: Color(0xFFD9D9D9),
+                                        width: 1,
                                       ),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
                                     ),
-                                    icon: const FaIcon(
-                                      FontAwesomeIcons.google,
-                                      color: Colors.red,
-                                      size: 18,
-                                    ),
-                                    label: Flexible(
-                                      child: Text(
-                                        "Continue with Google",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/google.png",
+                                          width: 15,
+                                          height: 15,
                                         ),
-                                      ),
+                                        const SizedBox(width: 2),
+                                        Flexible(
+                                          child: Text(
+                                            "Continue with Google",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: const Color(0xFF666666),
+                                              fontSize: size.width * .028,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: size.width * .03),
+
+                              const SizedBox(width: 4),
+
                               Expanded(
                                 child: SizedBox(
-                                  height: 48,
-                                  child: OutlinedButton.icon(
+                                  height: 38,
+                                  width: 60,
+                                  child: OutlinedButton(
                                     onPressed: () {},
                                     style: OutlinedButton.styleFrom(
-                                      minimumSize: const Size(
-                                        double.infinity,
-                                        48,
+                                      elevation: 0,
+                                      backgroundColor: Color(0xFFFAFAFA),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 2,
                                       ),
-                                      side: BorderSide(
-                                        color: Colors.grey.shade300,
+                                      side: const BorderSide(
+                                        color: Color(0xFFD9D9D9),
+                                        width: 1,
                                       ),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
                                     ),
-                                    icon: const Icon(
-                                      Icons.apple,
-                                      color: Colors.black,
-                                      size: 22,
-                                    ),
-                                    label: Flexible(
-                                      child: Text(
-                                        "Continue with Apple",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.apple,
+                                          size: 18,
+                                          color: Colors.black,
                                         ),
-                                      ),
+                                        const SizedBox(width: 0),
+                                        Flexible(
+                                          child: Text(
+                                            "Continue with Apple",
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              color: const Color(0xFF666666),
+                                              fontSize: size.width * .030,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -302,7 +334,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               text: TextSpan(
                                 style: TextStyle(
                                   color: Colors.black87,
-                                  fontSize: size.width * .042,
+                                  fontSize: 14,
                                 ),
                                 children: [
                                   const TextSpan(
@@ -317,7 +349,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                         "Log In",
                                         style: TextStyle(
                                           color: AppColors.primary,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),

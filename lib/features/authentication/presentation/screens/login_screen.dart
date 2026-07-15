@@ -2,7 +2,6 @@ import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/features/authentication/presentation/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class LoginScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.bg,
       body: SafeArea(
         child: Column(
           children: [
@@ -32,21 +31,20 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: size.height * .05),
 
-                      /// Logo
                       Center(
                         child: Image.asset(
                           "assets/images/logo.png",
-                          height: size.height * .08,
+                          width: size.width * .18,
                         ),
                       ),
 
-                      SizedBox(height: size.height * .01),
+                      SizedBox(height: size.height * .02),
 
                       Center(
                         child: Text(
-                          "Welcome Back!",
+                          "Welcome back!",
                           style: TextStyle(
-                            fontSize: size.width * .09,
+                            fontSize: 34,
                             fontWeight: FontWeight.bold,
                             color: AppColors.primary,
                           ),
@@ -57,11 +55,12 @@ class LoginScreen extends StatelessWidget {
 
                       Center(
                         child: Text(
-                          "Join us today and start enjoying our services.",
+                          "Join us today and start enjoying\nour services.",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: AppColors.textSecondary,
-                            fontSize: size.width * .04,
-                            height: 1.5,
+                            color: AppColors.textPrimary,
+                            fontSize: size.width * 0.038,
+                            height: 1.3,
                           ),
                         ),
                       ),
@@ -104,50 +103,57 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
 
-                            SizedBox(height: size.height * .012),
-
-                            Container(
-                              decoration: BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius: BorderRadius.circular(
-                                  size.width * .03,
+                            SizedBox(height: size.height * .010),
+                            SizedBox(
+                              height: 48, // Figma height
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(
+                                        alpha: 0.15,
+                                      ),
+                                      blurRadius: 12,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(.08),
-                                    blurRadius: 16,
-                                    offset: const Offset(0, 6),
-                                  ),
-                                ],
-                              ),
-                              child: TextField(
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  hintText: "Enter email",
-                                  filled: true,
-                                  fillColor: AppColors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: size.width * .05,
-                                    vertical: size.height * .022,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      size.width * .03,
+                                child: TextField(
+                                  controller: emailController,
+                                  style: const TextStyle(fontSize: 16),
+                                  decoration: InputDecoration(
+                                    hintText: "Enter email",
+                                    hintStyle: const TextStyle(
+                                      color: Color(0xFF9E9E9E),
+                                      fontSize: 16,
                                     ),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      size.width * .03,
+
+                                    filled: true,
+                                    fillColor: Colors.white,
+
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 12,
                                     ),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      size.width * .03,
+
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
                                     ),
-                                    borderSide: BorderSide(
-                                      color: AppColors.primary,
+
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
+                                    ),
+
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: AppColors.primary,
+                                        width: 1,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -164,68 +170,74 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
 
-                            SizedBox(height: size.height * .012),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius: BorderRadius.circular(
-                                  size.width * .03,
+                            SizedBox(height: size.height * .010),
+
+                            SizedBox(
+                              height: 48,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(
+                                        alpha: 0.15,
+                                      ),
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(.08),
-                                    blurRadius: 16,
-                                    offset: const Offset(0, 6),
-                                  ),
-                                ],
-                              ),
-                              child: TextField(
-                                controller: passwordController,
-                                obscureText: auth.obscurePassword,
-                                decoration: InputDecoration(
-                                  hintText: "Enter password",
-                                  filled: true,
-                                  fillColor: AppColors.white,
-
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: size.width * .05,
-                                    vertical: size.height * .022,
-                                  ),
-
-                                  suffixIcon: IconButton(
-                                    onPressed: () {
-                                      context
-                                          .read<AuthProvider>()
-                                          .togglePassword();
-                                    },
-                                    icon: Icon(
-                                      auth.obscurePassword
-                                          ? Icons.visibility_off_outlined
-                                          : Icons.visibility_outlined,
-                                      size: size.width * .055,
+                                child: TextField(
+                                  controller: passwordController,
+                                  obscureText: auth.obscurePassword,
+                                  style: const TextStyle(fontSize: 16),
+                                  decoration: InputDecoration(
+                                    hintText: "Enter password",
+                                    hintStyle: const TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFF9E9E9E),
                                     ),
-                                  ),
 
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      size.width * .03,
-                                    ),
-                                    borderSide: BorderSide.none,
-                                  ),
+                                    filled: true,
+                                    fillColor: AppColors.white,
 
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      size.width * .03,
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 12,
                                     ),
-                                    borderSide: BorderSide.none,
-                                  ),
 
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      size.width * .03,
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<AuthProvider>()
+                                            .togglePassword();
+                                      },
+                                      icon: Icon(
+                                        auth.obscurePassword
+                                            ? Icons.visibility_off_outlined
+                                            : Icons.visibility_outlined,
+                                        size: 18,
+                                        color: Colors.grey,
+                                      ),
                                     ),
-                                    borderSide: BorderSide(
-                                      color: AppColors.primary,
+
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
+                                    ),
+
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
+                                    ),
+
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: AppColors.primary,
+                                        width: 1,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -253,8 +265,8 @@ class LoginScreen extends StatelessWidget {
                                   "Forgot Password?",
                                   style: TextStyle(
                                     color: AppColors.primary,
-                                    fontSize: size.width * .038,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: size.width * .035,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -275,7 +287,7 @@ class LoginScreen extends StatelessWidget {
                                   child: Text(
                                     "OR",
                                     style: TextStyle(
-                                      fontSize: size.width * .04,
+                                      fontSize: 14,
                                       color: AppColors.textSecondary,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -294,41 +306,43 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: SizedBox(
-                                    height: size.height * .06,
+                                    height: 38,
                                     child: OutlinedButton(
                                       onPressed: () {},
                                       style: OutlinedButton.styleFrom(
-                                        backgroundColor: Colors.white,
-                                        side: BorderSide(
-                                          color: Colors.grey.shade300,
+                                        elevation: 0,
+                                        backgroundColor: Color(0xFFFAFAFA),
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 4,
+                                        ),
+                                        side: const BorderSide(
+                                          color: Color(0xFFD9D9D9),
+                                          width: 1,
                                         ),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
-                                            size.width * .030,
+                                            8,
                                           ),
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: size.width * .03,
                                         ),
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          FaIcon(
-                                            FontAwesomeIcons.google,
-                                            color: Colors.red,
-                                            size: size.width * .045,
+                                          Image.asset(
+                                            "assets/images/google.png",
+                                            width: 15,
+                                            height: 15,
                                           ),
-                                          SizedBox(width: size.width * .02),
+                                          const SizedBox(width: 2),
                                           Flexible(
                                             child: Text(
                                               "Continue with Google",
-                                              maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                fontSize: size.width * .026,
-                                                color: AppColors.textPrimary,
+                                                color: const Color(0xFF666666),
+                                                fontSize: size.width * .028,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -338,44 +352,49 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: size.width * .025),
+
+                                const SizedBox(width: 4),
+
                                 Expanded(
                                   child: SizedBox(
-                                    height: size.height * .06,
+                                    height: 38,
+                                    width: 60,
                                     child: OutlinedButton(
                                       onPressed: () {},
                                       style: OutlinedButton.styleFrom(
-                                        backgroundColor: Colors.white,
-                                        side: BorderSide(
-                                          color: Colors.grey.shade300,
+                                        elevation: 0,
+                                        backgroundColor: Color(0xFFFAFAFA),
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 2,
+                                        ),
+                                        side: const BorderSide(
+                                          color: Color(0xFFD9D9D9),
+                                          width: 1,
                                         ),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
-                                            size.width * .030,
+                                            8,
                                           ),
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: size.width * .03,
                                         ),
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.apple,
+                                            size: 18,
                                             color: Colors.black,
-                                            size: size.width * .055,
                                           ),
-                                          SizedBox(width: size.width * .02),
+                                          const SizedBox(width: 0),
                                           Flexible(
                                             child: Text(
                                               "Continue with Apple",
-                                              maxLines: 1,
+                                              textAlign: TextAlign.center,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                fontSize: size.width * .026,
-                                                color: AppColors.textPrimary,
+                                                color: const Color(0xFF666666),
+                                                fontSize: size.width * .030,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -391,14 +410,14 @@ class LoginScreen extends StatelessWidget {
 
                             SizedBox(
                               width: double.infinity,
-                              height: size.height * .07,
+                              height: size.height * .06,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primary,
                                   elevation: 0,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
-                                      size.width * .03,
+                                      size.width * .02,
                                     ),
                                   ),
                                 ),
@@ -422,7 +441,7 @@ class LoginScreen extends StatelessWidget {
                                         "Log In",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: size.width * .045,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -436,7 +455,7 @@ class LoginScreen extends StatelessWidget {
                                 text: TextSpan(
                                   style: TextStyle(
                                     color: AppColors.textSecondary,
-                                    fontSize: size.width * .038,
+                                    fontSize: size.width * .035,
                                   ),
                                   children: [
                                     const TextSpan(
@@ -454,8 +473,8 @@ class LoginScreen extends StatelessWidget {
                                           "Create here",
                                           style: TextStyle(
                                             color: AppColors.primary,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: size.width * .038,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: size.width * .035,
                                           ),
                                         ),
                                       ),
