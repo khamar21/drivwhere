@@ -1,6 +1,7 @@
 import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/features/authentication/presentation/providers/auth_provider.dart';
+import 'package:drivehere/features/authentication/presentation/screens/pickup_drop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -437,12 +438,24 @@ class LoginScreen extends StatelessWidget {
                                           color: Colors.white,
                                         ),
                                       )
-                                    : Text(
-                                        "Log In",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
+                                    : GestureDetector(
+                                        onTap: () {
+                                          print("Log In tapped");
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const PickupDropScreen(),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          "Log In",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                               ),

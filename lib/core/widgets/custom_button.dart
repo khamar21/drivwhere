@@ -39,9 +39,7 @@ class CustomButton extends StatelessWidget {
           foregroundColor: textColor ?? Colors.white,
           disabledBackgroundColor: Colors.grey.shade400,
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: isLoading
             ? SizedBox(
@@ -54,8 +52,8 @@ class CustomButton extends StatelessWidget {
               )
             : Text(
                 text,
-                style: TextStyle(
-                  fontSize:  16,
+                style: const TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
               ),

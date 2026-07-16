@@ -35,7 +35,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
         if (widget.labelText != null) ...[
           Text(
             widget.labelText!,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: Colors.black87,
@@ -62,7 +62,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             validator: widget.validator,
             onChanged: widget.onChanged,
             textInputAction: widget.textInputAction,
-            style: TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14),
             decoration: InputDecoration(
               hintText: widget.hintText,
               hintStyle: TextStyle(
