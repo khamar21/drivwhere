@@ -15,10 +15,8 @@ class PickupDropScreen extends StatefulWidget {
 }
 
 class _PickupDropScreenState extends State<PickupDropScreen> {
-
   DateTime? fromDate;
   DateTime? toDate;
-
 
   String hour = "03";
   String minute = "00";
@@ -50,6 +48,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
 
     return "${date.day}/${date.month}/${date.year}";
   }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -67,8 +66,6 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: size.height * .015),
-
-                    /// HEADER
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -76,16 +73,13 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                           "assets/images/logo.png",
                           width: size.width * .10,
                         ),
-
                         Image.asset(
                           "assets/images/dvrlogo.png",
                           width: size.width * .30,
                         ),
-
                         Container(
                           height: 40,
                           width: 40,
-                         
                           child: const Icon(
                             Icons.notifications_none_rounded,
                             color: AppColors.primary,
@@ -93,9 +87,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         ),
                       ],
                     ),
-
                     SizedBox(height: size.height * .035),
-
                     const Text(
                       "PICK UP & DROP",
                       style: TextStyle(
@@ -103,14 +95,9 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-
                     SizedBox(height: size.height * .02),
-
-                    
                     const LocationCard(),
-
                     SizedBox(height: size.height * .03),
-
                     const Text(
                       "Select Date",
                       style: TextStyle(
@@ -118,9 +105,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-
                     SizedBox(height: size.height * .01),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -132,7 +117,6 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                             fontSize: 14,
                           ),
                         ),
-
                         Row(
                           children: const [
                             Icon(Icons.chevron_left),
@@ -142,14 +126,9 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         ),
                       ],
                     ),
-
                     SizedBox(height: size.height * .02),
-
-                    /// DATE LIST
                     const DateSelector(),
-
                     SizedBox(height: size.height * .03),
-
                     const Text(
                       "Select Pick Up Time",
                       style: TextStyle(
@@ -157,182 +136,168 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-
                     SizedBox(height: size.height * .025),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TimeBox(
+                            value: hour,
+                            onTap: () async {
+                              setState(() {
+                                selectedTimeBox = 0;
+                              });
 
-                     Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    /// Hour
-                    TimeBox(
-                      value: hour,
-                     // isSelected: selectedTimeBox == 0,
-                      onTap: () async {
-                        setState(() {
-                          selectedTimeBox = 0;
-                        });
-
-                        final selectedHour = await showModalBottomSheet<String>(
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20),
-                            ),
-                          ),
-                          builder: (context) {
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: 12,
-                              itemBuilder: (context, index) {
-                                final value = (index + 1).toString().padLeft(
-                                  2,
-                                  '0',
-                                );
-
-                                return ListTile(
-                                  title: Center(child: Text(value)),
-                                  onTap: () {
-                                    Navigator.pop(context, value);
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        );
-
-                        if (selectedHour != null) {
-                          setState(() {
-                            hour = selectedHour;
-                          });
-                        }
-                      },
-                    ),
-
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        ":",
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-
-                    /// Minute
-                    TimeBox(
-                      value: minute,
-                     // isSelected: selectedTimeBox == 1,
-                      onTap: () async {
-                        setState(() {
-                          selectedTimeBox = 1;
-                        });
-
-                        final selectedMinute =
-                            await showModalBottomSheet<String>(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
-                                ),
-                              ),
-                              builder: (context) {
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: 60,
-                                  itemBuilder: (context, index) {
-                                    final value = index.toString().padLeft(
-                                      2,
-                                      '0',
-                                    );
-
-                                    return ListTile(
-                                      title: Center(child: Text(value)),
-                                      onTap: () {
-                                        Navigator.pop(context, value);
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                            );
-
-                        if (selectedMinute != null) {
-                          setState(() {
-                            minute = selectedMinute;
-                          });
-                        }
-                      },
-                    ),
-
-                    const SizedBox(width: 12),
-
-                    /// AM / PM
-                    TimeBox(
-                     // width: 82,
-                      value: period,
-                    //  isSelected: selectedTimeBox == 2,
-                      onTap: () async {
-                        setState(() {
-                          selectedTimeBox = 2;
-                        });
-
-                        final selectedPeriod =
-                            await showModalBottomSheet<String>(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
-                                ),
-                              ),
-                              builder: (context) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ListTile(
-                                      title: const Center(child: Text("AM")),
-                                      onTap: () {
-                                        Navigator.pop(context, "AM");
-                                      },
+                              final selectedHour =
+                                  await showModalBottomSheet<String>(
+                                    context: context,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
+                                      ),
                                     ),
+                                    builder: (context) {
+                                      return ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: 12,
+                                        itemBuilder: (context, index) {
+                                          final value = (index + 1)
+                                              .toString()
+                                              .padLeft(2, '0');
 
-                                    ListTile(
-                                      title: const Center(child: Text("PM")),
-                                      onTap: () {
-                                        Navigator.pop(context, "PM");
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-
-                        if (selectedPeriod != null) {
-                          setState(() {
-                            period = selectedPeriod;
-                          });
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-
-                    SizedBox(height: size.height * .05),
-
-                    const VehicleSection(),
-
-                    SizedBox(height: size.height * .05),
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const DailyScreen(),
-                                            ),
+                                          return ListTile(
+                                            title: Center(child: Text(value)),
+                                            onTap: () {
+                                              Navigator.pop(context, value);
+                                            },
                                           );
                                         },
+                                      );
+                                    },
+                                  );
+
+                              if (selectedHour != null) {
+                                setState(() {
+                                  hour = selectedHour;
+                                });
+                              }
+                            },
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: Text(
+                              ":",
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          TimeBox(
+                            value: minute,
+                            onTap: () async {
+                              setState(() {
+                                selectedTimeBox = 1;
+                              });
+
+                              final selectedMinute =
+                                  await showModalBottomSheet<String>(
+                                    context: context,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
+                                      ),
+                                    ),
+                                    builder: (context) {
+                                      return ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: 60,
+                                        itemBuilder: (context, index) {
+                                          final value = index
+                                              .toString()
+                                              .padLeft(2, '0');
+
+                                          return ListTile(
+                                            title: Center(child: Text(value)),
+                                            onTap: () {
+                                              Navigator.pop(context, value);
+                                            },
+                                          );
+                                        },
+                                      );
+                                    },
+                                  );
+
+                              if (selectedMinute != null) {
+                                setState(() {
+                                  minute = selectedMinute;
+                                });
+                              }
+                            },
+                          ),
+                          const SizedBox(width: 12),
+                          TimeBox(
+                            value: period,
+                            onTap: () async {
+                              setState(() {
+                                selectedTimeBox = 2;
+                              });
+
+                              final selectedPeriod =
+                                  await showModalBottomSheet<String>(
+                                    context: context,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
+                                      ),
+                                    ),
+                                    builder: (context) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          ListTile(
+                                            title: const Center(
+                                              child: Text("AM"),
+                                            ),
+                                            onTap: () {
+                                              Navigator.pop(context, "AM");
+                                            },
+                                          ),
+                                          ListTile(
+                                            title: const Center(
+                                              child: Text("PM"),
+                                            ),
+                                            onTap: () {
+                                              Navigator.pop(context, "PM");
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+
+                              if (selectedPeriod != null) {
+                                setState(() {
+                                  period = selectedPeriod;
+                                });
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: size.height * .05),
+                    const VehicleSection(),
+                    SizedBox(height: size.height * .05),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const DailyScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         "Estimate",
                         style: TextStyle(
@@ -341,9 +306,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         ),
                       ),
                     ),
-
                     SizedBox(height: size.height * .02),
-
                     Container(
                       width: double.infinity,
                       height: 120,
@@ -365,7 +328,6 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                         ),
                       ),
                     ),
-
                     SizedBox(height: size.height * .12),
                   ],
                 ),

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
-
 class DailyScreen extends StatefulWidget {
   const DailyScreen({super.key});
 
@@ -16,10 +15,8 @@ class DailyScreen extends StatefulWidget {
 }
 
 class _DailyScreenState extends State<DailyScreen> {
- 
   DateTime? fromDate;
   DateTime? toDate;
-
 
   String hour = "03";
   String minute = "00";
@@ -58,34 +55,25 @@ class _DailyScreenState extends State<DailyScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.bg,
-
       bottomNavigationBar: BottomNavigationWidget(
         onBack: () {
           Navigator.pop(context);
         },
-        onNext: () {
-        
-        },
+        onNext: () {},
       ),
-
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: size.width * .05),
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: size.height * .02),
-
-              /// HEADER
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset("assets/images/logo.png", width: 38),
-
                   Image.asset("assets/images/dvrlogo.png", width: 120),
-
                   const Icon(
                     Icons.notifications_none_rounded,
                     color: AppColors.primary,
@@ -93,9 +81,7 @@ class _DailyScreenState extends State<DailyScreen> {
                   ),
                 ],
               ),
-
               SizedBox(height: size.height * .04),
-
               const Text(
                 "DAILY",
                 style: TextStyle(
@@ -104,53 +90,38 @@ class _DailyScreenState extends State<DailyScreen> {
                   letterSpacing: .5,
                 ),
               ),
-
               SizedBox(height: size.height * .03),
-
-              /// PICKUP LOCATION
               const DailyLocationCard(),
-
               SizedBox(height: size.height * .04),
-
               const Text(
                 "Select Number Of Days",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
-
               SizedBox(height: size.height * .03),
-
               const Text(
                 "From",
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
-
               const SizedBox(height: 8),
-
               DateField(
                 value: formatDate(fromDate),
                 onTap: () {
                   pickDate(true);
                 },
               ),
-
               const SizedBox(height: 20),
-
               const Text(
                 "To",
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
-
               const SizedBox(height: 8),
-
               DateField(
                 value: formatDate(toDate),
                 onTap: () {
                   pickDate(false);
                 },
               ),
-
               const SizedBox(height: 18),
-
               const Center(
                 child: Text(
                   "Hiring driver for x days",
@@ -161,9 +132,7 @@ class _DailyScreenState extends State<DailyScreen> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 6),
-
               const Center(
                 child: Text(
                   "Normal working hours (14hr) with break",
@@ -171,25 +140,18 @@ class _DailyScreenState extends State<DailyScreen> {
                   style: TextStyle(color: Colors.grey, fontSize: 13),
                 ),
               ),
-
               SizedBox(height: size.height * .03),
-
-              /// SELECT PICK UP TIME
               const Text(
                 "Select Pick Up Time",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
-
               SizedBox(height: size.height * .02),
-
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /// Hour
                     TimeBox(
                       value: hour,
-                     // isSelected: selectedTimeBox == 0,
                       onTap: () async {
                         setState(() {
                           selectedTimeBox = 0;
@@ -230,7 +192,6 @@ class _DailyScreenState extends State<DailyScreen> {
                         }
                       },
                     ),
-
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 12),
                       child: Text(
@@ -241,11 +202,8 @@ class _DailyScreenState extends State<DailyScreen> {
                         ),
                       ),
                     ),
-
-                    /// Minute
                     TimeBox(
                       value: minute,
-                     // isSelected: selectedTimeBox == 1,
                       onTap: () async {
                         setState(() {
                           selectedTimeBox = 1;
@@ -287,14 +245,9 @@ class _DailyScreenState extends State<DailyScreen> {
                         }
                       },
                     ),
-
                     const SizedBox(width: 12),
-
-                    /// AM / PM
                     TimeBox(
-                     // width: 82,
                       value: period,
-                    //  isSelected: selectedTimeBox == 2,
                       onTap: () async {
                         setState(() {
                           selectedTimeBox = 2;
@@ -318,7 +271,6 @@ class _DailyScreenState extends State<DailyScreen> {
                                         Navigator.pop(context, "AM");
                                       },
                                     ),
-
                                     ListTile(
                                       title: const Center(child: Text("PM")),
                                       onTap: () {
@@ -340,22 +292,14 @@ class _DailyScreenState extends State<DailyScreen> {
                   ],
                 ),
               ),
-
               SizedBox(height: size.height * .035),
-
-              /// VEHICLE SECTION
               const VehicleSection(),
-
               SizedBox(height: size.height * .035),
-
-              /// ESTIMATE
               const Text(
                 "Estimate",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
-
               SizedBox(height: size.height * .02),
-
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
@@ -379,7 +323,6 @@ class _DailyScreenState extends State<DailyScreen> {
                           "Vehicle",
                           style: TextStyle(color: Colors.grey, fontSize: 15),
                         ),
-
                         Text(
                           "--",
                           style: TextStyle(
@@ -389,9 +332,7 @@ class _DailyScreenState extends State<DailyScreen> {
                         ),
                       ],
                     ),
-
                     SizedBox(height: 15),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -399,7 +340,6 @@ class _DailyScreenState extends State<DailyScreen> {
                           "Days",
                           style: TextStyle(color: Colors.grey, fontSize: 15),
                         ),
-
                         Text(
                           "--",
                           style: TextStyle(
@@ -409,13 +349,9 @@ class _DailyScreenState extends State<DailyScreen> {
                         ),
                       ],
                     ),
-
                     SizedBox(height: 15),
-
                     Divider(),
-
                     SizedBox(height: 15),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -426,7 +362,6 @@ class _DailyScreenState extends State<DailyScreen> {
                             fontSize: 16,
                           ),
                         ),
-
                         Text(
                           "₹ 0",
                           style: TextStyle(
@@ -440,7 +375,6 @@ class _DailyScreenState extends State<DailyScreen> {
                   ],
                 ),
               ),
-
               SizedBox(height: size.height * .10),
             ],
           ),
