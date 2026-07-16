@@ -2,27 +2,36 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
-class DateSelector extends StatefulWidget {
-  const DateSelector({super.key});
+class DateSelector extends StatelessWidget {
+  const DateSelector({
+    super.key,
+    required this.selectedDate,
+    required this.onDateSelected,
+    this.daysToShow = 6,
+  });
 
-  @override
-  State<DateSelector> createState() => _DateSelectorState();
-}
+  final DateTime selectedDate;
+  final ValueChanged<DateTime> onDateSelected;
+  final int daysToShow;
 
-class _DateSelectorState extends State<DateSelector> {
-  int selectedIndex = 2;
-
-  final List<Map<String, String>> dates = [
-    {"day": "SUN", "date": "18"},
-    {"day": "MON", "date": "19"},
-    {"day": "TUE", "date": "20"},
-    {"day": "WED", "date": "21"},
-    {"day": "THU", "date": "22"},
-    {"day": "FRI", "date": "23"},
+  static const List<String> _dayLabels = [
+    "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN",
   ];
+
+  bool _isSameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final today = DateTime.now();
+    final startDate = DateTime(today.year, today.month, today.day);
+
+    final dates = List.generate(
+      daysToShow,
+      (index) => startDate.add(Duration(days: index)),
+    );
+
     return SizedBox(
       height: 70,
       child: ListView.separated(
@@ -30,14 +39,11 @@ class _DateSelectorState extends State<DateSelector> {
         itemCount: dates.length,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
-          final selected = selectedIndex == index;
+          final date = dates[index];
+          final selected = _isSameDay(date, selectedDate);
 
           return GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
+            onTap: () => onDateSelected(date),
             child: Container(
               width: 60,
               decoration: BoxDecoration(
@@ -48,14 +54,14 @@ class _DateSelectorState extends State<DateSelector> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    dates[index]["day"]!,
+                    _dayLabels[date.weekday - 1],
                     style: TextStyle(
                       color: selected ? Colors.white : Colors.grey,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    dates[index]["date"]!,
+                    date.day.toString(),
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
