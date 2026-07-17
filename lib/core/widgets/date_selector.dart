@@ -1,49 +1,40 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart';
 
-import '../../../../core/constants/app_colors.dart';
-
-class DateSelector extends StatelessWidget {
+class DateSelector extends StatefulWidget {
   const DateSelector({
     super.key,
     required this.selectedDate,
     required this.onDateSelected,
-    this.daysToShow = 6,
   });
 
   final DateTime selectedDate;
   final ValueChanged<DateTime> onDateSelected;
-  final int daysToShow;
 
-  static const List<String> _dayLabels = [
-    "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN",
-  ];
+  @override
+  State<DateSelector> createState() => _DateSelectorState();
+}
 
-  bool _isSameDay(DateTime a, DateTime b) {
-    return a.year == b.year && a.month == b.month && a.day == b.day;
-  }
+class _DateSelectorState extends State<DateSelector> {
+  final DateTime startDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    final today = DateTime.now();
-    final startDate = DateTime(today.year, today.month, today.day);
-
-    final dates = List.generate(
-      daysToShow,
-      (index) => startDate.add(Duration(days: index)),
-    );
-
     return SizedBox(
-      height: 70,
+      height: 72,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: dates.length,
+        itemCount: 365,
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
-          final date = dates[index];
-          final selected = _isSameDay(date, selectedDate);
+          final date = startDate.add(Duration(days: index));
+
+          final selected = date.year == widget.selectedDate.year &&
+              date.month == widget.selectedDate.month &&
+              date.day == widget.selectedDate.day;
 
           return GestureDetector(
-            onTap: () => onDateSelected(date),
+            onTap: () => widget.onDateSelected(date),
             child: Container(
               width: 60,
               decoration: BoxDecoration(
@@ -54,14 +45,14 @@ class DateSelector extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    _dayLabels[date.weekday - 1],
+                    ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][date.weekday - 1],
                     style: TextStyle(
                       color: selected ? Colors.white : Colors.grey,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
                   Text(
-                    date.day.toString(),
+                    "${date.day}",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

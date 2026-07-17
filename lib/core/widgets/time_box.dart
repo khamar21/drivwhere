@@ -6,86 +6,53 @@ class TimeBox extends StatelessWidget {
   const TimeBox({
     super.key,
     required this.value,
-    required this.onTap,
-    this.isSelected = false,
-    this.width = 72,
-    this.height = 48,
+    this.onTap,
+    this.width = 70,
   });
 
   final String value;
-  final VoidCallback onTap;
-  final bool isSelected;
+  final VoidCallback? onTap;
   final double width;
-  final double height;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          width: width,
-          height: height,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          decoration: BoxDecoration(
-            color: isSelected
-                ? AppColors.primary
-                : Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: isSelected
-                  ? AppColors.primary
-                  : const Color(0xffE5E5E5),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        width: width,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.08),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.08),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              value,
+              style: const TextStyle(
+                color: AppColors.primary,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Center(
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: isSelected
-                          ? Colors.white
-                          : AppColors.primary,
-                    ),
-                  ),
-                ),
-              ),
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.keyboard_arrow_up,
-                    size: 14,
-                    color: isSelected
-                        ? Colors.white
-                        : Colors.grey,
-                  ),
-                  Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 14,
-                    color: isSelected
-                        ? Colors.white
-                        : Colors.grey,
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(width: 2),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(Icons.keyboard_arrow_up, size: 14, color: Colors.grey),
+                Icon(Icons.keyboard_arrow_down, size: 14, color: Colors.grey),
+              ],
+            ),
+          ],
         ),
       ),
     );
