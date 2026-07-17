@@ -18,7 +18,7 @@ class BottomNavigationWidget extends StatelessWidget {
       
       padding: const EdgeInsets.fromLTRB(20, 15, 20, 25),
       decoration: const BoxDecoration(
-      color: AppColors.bg,
+      color: AppColors.white,
         // boxShadow: [
         //   BoxShadow(
         //     color: Colors.black12,
@@ -35,7 +35,7 @@ class BottomNavigationWidget extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: onBack,
                 style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(52),
+                  minimumSize: const Size.fromHeight(44),
                   side: const BorderSide(
                     color: Colors.grey,
                   ),
@@ -48,19 +48,20 @@ class BottomNavigationWidget extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w600,
+                    fontSize: 16,
                   ),
                 ),
               ),
             ),
 
-            const SizedBox(width: 16),
+            const SizedBox(width: 30),
 
             Expanded(
               child: ElevatedButton(
                 onPressed: onNext,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  minimumSize: const Size.fromHeight(52),
+                  minimumSize: const Size.fromHeight(44),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -70,7 +71,7 @@ class BottomNavigationWidget extends StatelessWidget {
                   "Next",
                   style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     fontSize: 16,
                   ),
                 ),

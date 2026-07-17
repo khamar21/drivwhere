@@ -3,66 +3,46 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
 
 class DateField extends StatelessWidget {
-
-  const DateField({
-    super.key,
-    required this.value,
-    required this.onTap,
-  });
+  const DateField({super.key, required this.value, required this.onTap});
 
   final String value;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
-
       onTap: onTap,
 
       borderRadius: BorderRadius.circular(14),
 
       child: Container(
-
         height: 56,
 
         padding: const EdgeInsets.symmetric(horizontal: 16),
 
         decoration: BoxDecoration(
-
           color: Colors.white,
-
           borderRadius: BorderRadius.circular(14),
-
-          boxShadow: [
-
+                          boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.05),
-              blurRadius: 8,
-            )
-
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 5,
+              spreadRadius: 0,
+              offset: const Offset(0, 5),
+            ),
           ],
-
         ),
 
         child: Row(
-
           children: [
-
             Expanded(
-
               child: Text(
-
                 value,
 
                 style: TextStyle(
-
-                  color: value == "Select date"
-                      ? Colors.grey
-                      : Colors.black,
+                  color: value == "Select date" ? Colors.grey : Colors.black,
 
                   fontSize: 15,
-
                 ),
               ),
             ),
@@ -71,8 +51,7 @@ class DateField extends StatelessWidget {
               Icons.calendar_today_outlined,
               color: AppColors.primary,
               size: 20,
-            )
-
+            ),
           ],
         ),
       ),

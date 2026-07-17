@@ -2,28 +2,32 @@ import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
 import 'package:drivehere/core/widgets/daily_location_card.dart';
 import 'package:drivehere/core/widgets/date_field.dart';
 import 'package:drivehere/core/widgets/estimate_card.dart';
-import 'package:drivehere/core/widgets/time_box.dart';
-import 'package:drivehere/core/widgets/time_picker_sheet.dart';
 import 'package:drivehere/core/widgets/vehicle_section.dart';
-import 'package:drivehere/features/authentication/presentation/screens/monthly_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
-class DailyScreen extends StatefulWidget {
-  const DailyScreen({super.key});
+class MonthlyScreen extends StatefulWidget {
+  const MonthlyScreen({super.key});
 
   @override
-  State<DailyScreen> createState() => _DailyScreenState();
+  State<MonthlyScreen> createState() => _MonthlyScreenState();
 }
 
-class _DailyScreenState extends State<DailyScreen> {
+class _MonthlyScreenState extends State<MonthlyScreen> {
   DateTime? fromDate;
   DateTime? toDate;
 
-  String hour = "8";
-  String minute = "00";
-  String period = "PM";
+  // final List<FeeRow> feeRows = [
+  //   FeeRow(label: "Driver fee", perDay: 600),
+  //   FeeRow(label: "Food Allowance", perDay: 600, hasClientOption: true),
+  //   FeeRow(label: "Accommodation", perDay: 0, hasClientOption: true),
+  // ];
+
+  int get selectedDays {
+    if (fromDate == null || toDate == null) return 4;
+    return toDate!.difference(fromDate!).inDays + 1;
+  }
 
   Future<void> pickDate(bool isFrom) async {
     final pickedDate = await showDatePicker(
@@ -50,29 +54,11 @@ class _DailyScreenState extends State<DailyScreen> {
     return "${date.day}/${date.month}/${date.year}";
   }
 
-  Future<void> openTimePicker() async {
-    final result = await TimePickerSheet.show(
-      context: context,
-      hour: hour,
-      minute: minute,
-      period: period,
-    );
-
-    if (result != null) {
-      setState(() {
-        hour = result["hour"]!;
-        minute = result["minute"]!;
-        period = result["period"]!;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      // backgroundColor: AppColors.bg,
       bottomNavigationBar: BottomNavigationWidget(
         onBack: () {
           Navigator.pop(context);
@@ -95,7 +81,6 @@ class _DailyScreenState extends State<DailyScreen> {
             stops: [0.0, 0.25, 0.75, 1.0],
           ),
         ),
-
         child: SafeArea(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -107,107 +92,62 @@ class _DailyScreenState extends State<DailyScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset("assets/images/logo.png", width: 38),
+                    Image.asset("assets/images/logo.png", width: 42),
                     Image.asset("assets/images/dvrlogo.png", width: 120),
                     const Icon(
                       Icons.notifications_none_rounded,
                       color: AppColors.primary,
-                      size: 28,
+                      size: 25,
                     ),
                   ],
                 ),
                 SizedBox(height: size.height * .04),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const MonthlyScreen()),
-                    );
-                  },
-                  child: const Text(
-                    "DAILY",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: .5,
-                    ),
+                const Text(
+                  "MONTHLY",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: .5,
                   ),
                 ),
                 SizedBox(height: size.height * .03),
                 const DailyLocationCard(),
                 SizedBox(height: size.height * .04),
                 const Text(
-                  "Select Number Of Days",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  "Select Month",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
-                SizedBox(height: size.height * .02),
+                SizedBox(height: size.height * .03),
                 const Text(
                   "From",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 5),
                 DateField(
                   value: formatDate(fromDate),
                   onTap: () {
                     pickDate(true);
                   },
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
                 const Text(
                   "To",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 5),
                 DateField(
                   value: formatDate(toDate),
                   onTap: () {
                     pickDate(false);
                   },
                 ),
-                const SizedBox(height: 18),
-                Text(
-                  "Hiring driver for x days",
-                  textAlign: TextAlign.start,
-                
+                const SizedBox(height: 10),
+                const Text(
+                  "Minimum 14 days hiring",
                   style: TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                const Center(
-                  child: Text(
-                    "Normal working hours (14hr) with break",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey, fontSize: 13),
-                  ),
-                ),
-                SizedBox(height: size.height * .03),
-                const Text(
-                  "Select Pick Up Time",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: size.height * .02),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TimeBox(value: hour, onTap: openTimePicker),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 12),
-                        child: Text(
-                          ":",
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      TimeBox(value: minute, onTap: openTimePicker),
-                      const SizedBox(width: 12),
-                      TimeBox(value: period, width: 80, onTap: openTimePicker),
-                    ],
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: size.height * .035),
@@ -218,7 +158,9 @@ class _DailyScreenState extends State<DailyScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: size.height * .02),
+                //  MonthlyEstimateCard(rows: feeRows, days: selectedDays),
                 const EstimateCard(),
+                // SizedBox(height: size.height * .10),
                 SizedBox(height: size.height * .10),
               ],
             ),

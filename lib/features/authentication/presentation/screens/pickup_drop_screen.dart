@@ -1,3 +1,5 @@
+import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
+import 'package:drivehere/core/widgets/estimate_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -66,6 +68,12 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      bottomNavigationBar: BottomNavigationWidget(
+        onBack: () {
+          Navigator.pop(context);
+        },
+        onNext: () {},
+      ),
       //backgroundColor: AppColors.bg,
       body: Container(
         width: double.infinity,
@@ -105,7 +113,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                     const Icon(
                       Icons.notifications_none_rounded,
                       color: AppColors.primary,
-                      size: 28,
+                      size: 25,
                     ),
                   ],
                 ),
@@ -206,21 +214,8 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                 ),
                 SizedBox(height: size.height * .02),
 
-                Container(
-                  width: double.infinity,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(.05),
-                        blurRadius: 8,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                ),
+               const EstimateCard(),
+
                 SizedBox(height: size.height * .10),
               ],
             ),

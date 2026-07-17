@@ -7,79 +7,63 @@ class DailyLocationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-
       padding: const EdgeInsets.all(18),
 
       decoration: BoxDecoration(
-
         color: Colors.white,
 
         borderRadius: BorderRadius.circular(16),
 
         boxShadow: [
-
-          BoxShadow(
-            color: Colors.black.withOpacity(.05),
-            blurRadius: 10,
-          )
-
-        ],
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 5,
+              spreadRadius: 0,
+              offset: const Offset(0, 5),
+            ),
+          ],
       ),
 
       child: Row(
-
         children: [
-
           Container(
-
             width: 42,
             height: 42,
 
             decoration: BoxDecoration(
               color: const Color(0xffF8E9E9),
               borderRadius: BorderRadius.circular(8),
+              
             ),
 
             child: const Icon(
               Icons.location_on_outlined,
               color: AppColors.primary,
             ),
-
           ),
 
           const SizedBox(width: 15),
 
           const Expanded(
-
             child: Column(
-
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
-
                 Text(
                   "Pick Up Location",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15,
-                  ),
+                  style: TextStyle(color: Colors.grey, fontSize: 15),
                 ),
 
                 SizedBox(height: 4),
 
                 Text(
                   "Vytilla",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                )
-
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color:AppColors.textSecondary ),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/constants/app_colors.dart';
+// import 'package:iconify_flutter/iconify_flutter.dart';
+// import 'package:iconify_flutter/icons/hugeicons.dart';
 
 class VehicleSection extends StatelessWidget {
   const VehicleSection({super.key});
@@ -9,12 +12,21 @@ class VehicleSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(
-          Icons.local_taxi_outlined,
-          color: AppColors.primary,
-          size: 22,
+        SvgPicture.asset(
+          'assets/images/vehicle.svg',
+          width: 20,
+          height: 20,
+          colorFilter: const ColorFilter.mode(
+            Color(0xffB00000),
+            BlendMode.srcIn,
+          ),
         ),
 
+        //         Iconify(
+        //   Hugeicons.car03,
+        //   size: 24,
+        //   color: Colors.red,
+        // )
         const SizedBox(width: 8),
 
         const Expanded(

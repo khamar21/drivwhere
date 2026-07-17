@@ -12,9 +12,15 @@ class LocationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(.05), blurRadius: 18),
-        ],
+                boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 5,
+              spreadRadius: 0,
+              offset: const Offset(0, 5),
+            ),
+          ],
+
       ),
       child: Column(
         children: [
@@ -56,6 +62,7 @@ class LocationCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
+                        color: AppColors.textSecondary
                       ),
                     ),
                   ],
@@ -104,6 +111,7 @@ class LocationCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
+                        color: AppColors.textSecondary
                       ),
                     ),
                   ],

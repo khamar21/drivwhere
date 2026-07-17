@@ -11,7 +11,7 @@ class AppColors {
   static const Color grey = Colors.grey;
 
   static const Color textPrimary = Color(0xff222222);
-  static const Color textSecondary = Color(0xff757575);
+  static const Color textSecondary = Color(0xff505050);
 
   static const Color textField = Color(0xffF6F6F6);
 
