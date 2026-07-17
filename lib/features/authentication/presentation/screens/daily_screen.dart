@@ -2,6 +2,7 @@ import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
 import 'package:drivehere/core/widgets/daily_location_card.dart';
 import 'package:drivehere/core/widgets/date_field.dart';
 import 'package:drivehere/core/widgets/estimate_card.dart';
+import 'package:drivehere/core/widgets/home_appbar.dart';
 import 'package:drivehere/core/widgets/time_box.dart';
 import 'package:drivehere/core/widgets/time_picker_sheet.dart';
 import 'package:drivehere/core/widgets/vehicle_section.dart';
@@ -104,19 +105,24 @@ class _DailyScreenState extends State<DailyScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: size.height * .02),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset("assets/images/logo.png", width: 38),
-                    Image.asset("assets/images/dvrlogo.png", width: 120),
-                    const Icon(
-                      Icons.notifications_none_rounded,
-                      color: AppColors.primary,
-                      size: 28,
-                    ),
-                  ],
-                ),
-                SizedBox(height: size.height * .04),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Image.asset("assets/images/logo.png", width: 38),
+                //     Image.asset("assets/images/dvrlogo.png", width: 120),
+                //     const Icon(
+                //       Icons.notifications_none_rounded,
+                //       color: AppColors.primary,
+                //       size: 28,
+                //     ),
+                //   ],
+                // ),
+
+                const HomeAppBarWidget(),
+                 SizedBox(height: size.height *.03),
+
+                 
+               // SizedBox(height: size.height * .04),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(

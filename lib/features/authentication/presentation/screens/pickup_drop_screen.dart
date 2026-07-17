@@ -1,5 +1,6 @@
 import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
 import 'package:drivehere/core/widgets/estimate_card.dart';
+import 'package:drivehere/core/widgets/home_appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -99,25 +100,27 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
               children: [
                 SizedBox(height: size.height * .015),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      "assets/images/logo.png",
-                      width: size.width * .10,
-                    ),
-                    Image.asset(
-                      "assets/images/dvrlogo.png",
-                      width: size.width * .30,
-                    ),
-                    const Icon(
-                      Icons.notifications_none_rounded,
-                      color: AppColors.primary,
-                      size: 25,
-                    ),
-                  ],
-                ),
-                SizedBox(height: size.height * .035),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Image.asset(
+                //       "assets/images/logo.png",
+                //       width: size.width * .10,
+                //     ),
+                //     Image.asset(
+                //       "assets/images/dvrlogo.png",
+                //       width: size.width * .30,
+                //     ),
+                //     const Icon(
+                //       Icons.notifications_none_rounded,
+                //       color: AppColors.primary,
+                //       size: 25,
+                //     ),
+                //   ],
+                // ),
+                const HomeAppBarWidget(),
+                 SizedBox(height: size.height *.03),
+               // SizedBox(height: size.height * .035),
 
                 const Text(
                   "PICK UP & DROP",

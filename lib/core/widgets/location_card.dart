@@ -37,6 +37,7 @@ class LocationCard extends StatelessWidget {
                 child: const Icon(
                   Icons.near_me_outlined,
                   color: AppColors.primary,
+                  
                 ),
               ),
 
