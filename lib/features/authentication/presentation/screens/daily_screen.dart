@@ -1,7 +1,9 @@
 import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
 import 'package:drivehere/core/widgets/daily_location_card.dart';
 import 'package:drivehere/core/widgets/date_field.dart';
+import 'package:drivehere/core/widgets/estimate_card.dart';
 import 'package:drivehere/core/widgets/time_box.dart';
+import 'package:drivehere/core/widgets/time_picker_sheet.dart';
 import 'package:drivehere/core/widgets/vehicle_section.dart';
 import 'package:flutter/material.dart';
 
@@ -21,8 +23,6 @@ class _DailyScreenState extends State<DailyScreen> {
   String hour = "03";
   String minute = "00";
   String period = "PM";
-
-  int selectedTimeBox = -1;
 
   Future<void> pickDate(bool isFrom) async {
     final pickedDate = await showDatePicker(
@@ -47,6 +47,23 @@ class _DailyScreenState extends State<DailyScreen> {
     if (date == null) return "Select date";
 
     return "${date.day}/${date.month}/${date.year}";
+  }
+
+  Future<void> openTimePicker() async {
+    final result = await TimePickerSheet.show(
+      context: context,
+      hour: hour,
+      minute: minute,
+      period: period,
+    );
+
+    if (result != null) {
+      setState(() {
+        hour = result["hour"]!;
+        minute = result["minute"]!;
+        period = result["period"]!;
+      });
+    }
   }
 
   @override
@@ -150,48 +167,7 @@ class _DailyScreenState extends State<DailyScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TimeBox(
-                      value: hour,
-                      onTap: () async {
-                        setState(() {
-                          selectedTimeBox = 0;
-                        });
-
-                        final selectedHour = await showModalBottomSheet<String>(
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20),
-                            ),
-                          ),
-                          builder: (context) {
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: 12,
-                              itemBuilder: (context, index) {
-                                final value = (index + 1).toString().padLeft(
-                                  2,
-                                  '0',
-                                );
-
-                                return ListTile(
-                                  title: Center(child: Text(value)),
-                                  onTap: () {
-                                    Navigator.pop(context, value);
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        );
-
-                        if (selectedHour != null) {
-                          setState(() {
-                            hour = selectedHour;
-                          });
-                        }
-                      },
-                    ),
+                    TimeBox(value: hour, onTap: openTimePicker),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 12),
                       child: Text(
@@ -202,93 +178,9 @@ class _DailyScreenState extends State<DailyScreen> {
                         ),
                       ),
                     ),
-                    TimeBox(
-                      value: minute,
-                      onTap: () async {
-                        setState(() {
-                          selectedTimeBox = 1;
-                        });
-
-                        final selectedMinute =
-                            await showModalBottomSheet<String>(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
-                                ),
-                              ),
-                              builder: (context) {
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: 60,
-                                  itemBuilder: (context, index) {
-                                    final value = index.toString().padLeft(
-                                      2,
-                                      '0',
-                                    );
-
-                                    return ListTile(
-                                      title: Center(child: Text(value)),
-                                      onTap: () {
-                                        Navigator.pop(context, value);
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                            );
-
-                        if (selectedMinute != null) {
-                          setState(() {
-                            minute = selectedMinute;
-                          });
-                        }
-                      },
-                    ),
+                    TimeBox(value: minute, onTap: openTimePicker),
                     const SizedBox(width: 12),
-                    TimeBox(
-                      value: period,
-                      onTap: () async {
-                        setState(() {
-                          selectedTimeBox = 2;
-                        });
-
-                        final selectedPeriod =
-                            await showModalBottomSheet<String>(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
-                                ),
-                              ),
-                              builder: (context) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ListTile(
-                                      title: const Center(child: Text("AM")),
-                                      onTap: () {
-                                        Navigator.pop(context, "AM");
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Center(child: Text("PM")),
-                                      onTap: () {
-                                        Navigator.pop(context, "PM");
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-
-                        if (selectedPeriod != null) {
-                          setState(() {
-                            period = selectedPeriod;
-                          });
-                        }
-                      },
-                    ),
+                    TimeBox(value: period, width: 80, onTap: openTimePicker),
                   ],
                 ),
               ),
@@ -300,81 +192,7 @@ class _DailyScreenState extends State<DailyScreen> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
               SizedBox(height: size.height * .02),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.05),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Vehicle",
-                          style: TextStyle(color: Colors.grey, fontSize: 15),
-                        ),
-                        Text(
-                          "--",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Days",
-                          style: TextStyle(color: Colors.grey, fontSize: 15),
-                        ),
-                        Text(
-                          "--",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Divider(),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Estimated Amount",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          "₹ 0",
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              const EstimateCard(),
               SizedBox(height: size.height * .10),
             ],
           ),
