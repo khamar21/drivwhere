@@ -1,19 +1,46 @@
 import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
-import 'package:drivehere/features/authentication/presentation/providers/auth_provider.dart';
 import 'package:drivehere/features/authentication/presentation/screens/pickup_drop_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  bool obscurePassword = true;
+  bool isLoading = false;
+
+  void togglePassword() {
+    setState(() {
+      obscurePassword = !obscurePassword;
+    });
+  }
+
+  Future<void> login() async {
+    setState(() => isLoading = true);
+
+    // TODO: replace with actual login logic
+    await Future.delayed(const Duration(seconds: 2));
+
+    setState(() => isLoading = false);
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -191,7 +218,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 child: TextField(
                                   controller: passwordController,
-                                  obscureText: auth.obscurePassword,
+                                  obscureText: obscurePassword,
                                   style: const TextStyle(fontSize: 16),
                                   decoration: InputDecoration(
                                     hintText: "Enter password",
@@ -209,13 +236,9 @@ class LoginScreen extends StatelessWidget {
                                     ),
 
                                     suffixIcon: IconButton(
-                                      onPressed: () {
-                                        context
-                                            .read<AuthProvider>()
-                                            .togglePassword();
-                                      },
+                                      onPressed: togglePassword,
                                       icon: Icon(
-                                        auth.obscurePassword
+                                        obscurePassword
                                             ? Icons.visibility_off_outlined
                                             : Icons.visibility_outlined,
                                         size: 18,
@@ -422,14 +445,20 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                onPressed: auth.isLoading
+                                onPressed: isLoading
                                     ? null
                                     : () async {
-                                        await context
-                                            .read<AuthProvider>()
-                                            .login();
+                                        await login();
+                                        if (!context.mounted) return;
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                const PickupDropScreen(),
+                                          ),
+                                        );
                                       },
-                                child: auth.isLoading
+                                child: isLoading
                                     ? SizedBox(
                                         height: size.width * .055,
                                         width: size.width * .055,
@@ -438,24 +467,12 @@ class LoginScreen extends StatelessWidget {
                                           color: Colors.white,
                                         ),
                                       )
-                                    : GestureDetector(
-                                        onTap: () {
-                                          print("Log In tapped");
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const PickupDropScreen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          "Log In",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                    : Text(
+                                        "Log In",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                               ),
