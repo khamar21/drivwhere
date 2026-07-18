@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
@@ -16,14 +17,15 @@ class DateField extends StatelessWidget {
       borderRadius: BorderRadius.circular(14),
 
       child: Container(
-        height: 56,
+        height: 48,
+        width: 390,
 
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
 
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.15),
               blurRadius: 5,
@@ -47,11 +49,18 @@ class DateField extends StatelessWidget {
               ),
             ),
 
-            const Icon(
-              Icons.calendar_today_outlined,
+            // const Icon(
+            //   Icons.calendar_today_outlined,
+            //   color: AppColors.primary,
+            //   size: 20,
+            // ),
+            SvgPicture.asset(
+              "assets/images/calendar.svg",
+              width: 18,
+              height: 18,
               color: AppColors.primary,
-              size: 20,
-            ),
+              
+            )
           ],
         ),
       ),

@@ -163,7 +163,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: size.height * .02),
+                SizedBox(height: size.height * .001),
 
                 DateSelector(
                   selectedDate: selectedDate,
@@ -175,7 +175,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   "Select Pick Up Time",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
-                SizedBox(height: size.height * .025),
+                SizedBox(height: size.height * .02),
 
                 Center(
                   child: Row(

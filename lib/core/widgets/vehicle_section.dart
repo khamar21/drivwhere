@@ -14,8 +14,8 @@ class VehicleSection extends StatelessWidget {
       children: [
         SvgPicture.asset(
           'assets/images/vehicle.svg',
-          width: 20,
-          height: 20,
+          width: 24,
+          height: 24,
           colorFilter: const ColorFilter.mode(
             Color(0xffB00000),
             BlendMode.srcIn,
@@ -37,8 +37,8 @@ class VehicleSection extends StatelessWidget {
         ),
 
         SizedBox(
-          width: 100,
-          height: 42,
+          width: 90,
+          height: 40,
           child: OutlinedButton.icon(
             onPressed: () {},
 
@@ -50,22 +50,20 @@ class VehicleSection extends StatelessWidget {
 
             label: const Text(
               "Add",
-              textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.primary,
+                fontSize: 15,
                 fontWeight: FontWeight.w600,
-                fontSize: 14,
               ),
             ),
 
             style: OutlinedButton.styleFrom(
-              backgroundColor: const Color(0xFF9A0003).withValues(alpha: 0.1),
-
+              backgroundColor: const Color(0xFF9A0003).withOpacity(0.1),
               side: const BorderSide(color: AppColors.primary),
-
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
             ),
           ),
         ),

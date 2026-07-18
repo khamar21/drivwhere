@@ -8,12 +8,14 @@ class DailyLocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 390,
+      height: 86,
       padding: const EdgeInsets.all(18),
 
       decoration: BoxDecoration(
         color: Colors.white,
 
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
 
         boxShadow: [
             BoxShadow(

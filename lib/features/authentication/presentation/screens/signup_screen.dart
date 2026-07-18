@@ -55,15 +55,17 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
 
-                    SizedBox(height: size.height * .02),
+                    SizedBox(height:2),
 
-                    Text(
-                      "Create an account",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.primary,
+                    Center(
+                      child: Text(
+                        "Create an account",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.085,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primary,
+                        ),
                       ),
                     ),
 
@@ -165,12 +167,16 @@ class _SignupScreenState extends State<SignupScreen> {
                                       children: [
                                         TextSpan(
                                           text: "Do you agree to Drivwheres ",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                          )
                                         ),
                                         TextSpan(
                                           text: "Terms & conditions",
                                           style: TextStyle(
                                             color: Color(0xffB00000),
                                             fontWeight: FontWeight.w500,
+                                            fontSize: 10,
                                           ),
                                         ),
                                       ],
@@ -181,7 +187,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
 
-                          SizedBox(height: size.height * .025),
+                          SizedBox(height: size.height * .050),
 
                           Row(
                             children: [
