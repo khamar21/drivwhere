@@ -155,10 +155,10 @@ class _MonthlyScreenState extends State<MonthlyScreen> {
                 SizedBox(height: size.height * .035),
                 const VehicleSection(),
                 SizedBox(height: size.height * .035),
-                const Text(
-                  "Estimate",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
+                 const Text(
+                    "Estimate",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
                 SizedBox(height: size.height * .02),
                 //  MonthlyEstimateCard(rows: feeRows, days: selectedDays),
                 const EstimateCard(),

@@ -144,12 +144,12 @@ class _DailyScreenState extends State<DailyScreen> {
                 SizedBox(height: size.height * .04),
                 const Text(
                   "Select Number Of Days",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: size.height * .02),
                 const Text(
                   "From",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 6),
                 DateField(
@@ -161,7 +161,7 @@ class _DailyScreenState extends State<DailyScreen> {
                 const SizedBox(height: 15),
                 const Text(
                   "To",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 6),
                 DateField(
@@ -192,7 +192,7 @@ class _DailyScreenState extends State<DailyScreen> {
                 SizedBox(height: size.height * .03),
                 const Text(
                   "Select Pick Up Time",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: size.height * .02),
                 Center(
@@ -219,10 +219,10 @@ class _DailyScreenState extends State<DailyScreen> {
                 SizedBox(height: size.height * .035),
                 const VehicleSection(),
                 SizedBox(height: size.height * .035),
-                const Text(
-                  "Estimate",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
+                 const Text(
+                    "Estimate",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
                 SizedBox(height: size.height * .02),
                 const EstimateCard(),
                 SizedBox(height: size.height * .10),

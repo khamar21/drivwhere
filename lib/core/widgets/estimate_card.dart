@@ -37,49 +37,40 @@ class _EstimateCardState extends State<EstimateCard> {
                 flex: 4,
                 child: Text(
                   "Fee types",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
                 ),
               ),
               Expanded(
-                flex: 2,
+               flex: 3,
                 child: Text(
                   "Per day",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
                 ),
               ),
               Expanded(
                 child: Text(
                   "Days",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: Text(
                   "2400",
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 13,
                   ),
                 ),
               ),
             ],
           ),
 
-          const SizedBox(height: 18),
+          const SizedBox(height: 14),
 
           _feeRow(
             title: "Driver fee",
@@ -89,7 +80,7 @@ class _EstimateCardState extends State<EstimateCard> {
             totalColor: AppColors.primary,
           ),
 
-          const SizedBox(height: 14),
+          const SizedBox(height: 10),
 
           _feeRow(
             title: "Food Allowance",
@@ -108,7 +99,7 @@ class _EstimateCardState extends State<EstimateCard> {
             ),
           ),
 
-          const SizedBox(height: 14),
+          const SizedBox(height: 10),
 
           _feeRow(
             title: "Accommodation",
@@ -127,29 +118,29 @@ class _EstimateCardState extends State<EstimateCard> {
             ),
           ),
 
-          const SizedBox(height: 18),
+          const SizedBox(height: 14),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "Total",
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-              Text(
-                "4800 ₹",
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: const [
+          //     Text(
+          //       "Total",
+          //       style: TextStyle(
+          //         color: AppColors.primary,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 18,
+          //       ),
+          //     ),
+          //     Text(
+          //       "4800 ₹",
+          //       style: TextStyle(
+          //         color: AppColors.primary,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 18,
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -171,51 +162,27 @@ class _EstimateCardState extends State<EstimateCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
+              Text(title, style: const TextStyle(fontSize: 13)),
               if (checkbox != null)
                 Row(
                   children: [
-                    SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: checkbox,
-                    ),
+                   // SizedBox(width: 18, height: 18, child: checkbox),
                     const SizedBox(width: 6),
-                    const Expanded(
-  child: Text(
-    "If provided by client",
-    maxLines: 2,
-    overflow: TextOverflow.ellipsis,
-    style: TextStyle(
-      color: Colors.grey,
-      fontSize: 12,
-    ),
-  ),
-),
+                    // const Expanded(
+                    //   child: Text(
+                    //     "If provided by client",
+                    //     maxLines: 2,
+                    //     overflow: TextOverflow.ellipsis,
+                    //     style: TextStyle(color: Colors.grey, fontSize: 12),
+                    //   ),
+                    // ),
                   ],
                 ),
             ],
           ),
         ),
-        Expanded(
-          flex: 2,
-          child: Text(
-            perDay,
-            textAlign: TextAlign.center,
-          ),
-        ),
-        Expanded(
-          child: Text(
-            days,
-            textAlign: TextAlign.center,
-            
-          ),
-        ),
+        Expanded(flex: 2, child: Text(perDay, textAlign: TextAlign.center)),
+        Expanded(child: Text(days, textAlign: TextAlign.center)),
         Expanded(
           flex: 2,
           child: Text(
@@ -224,7 +191,7 @@ class _EstimateCardState extends State<EstimateCard> {
             style: TextStyle(
               color: totalColor,
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 12,
             ),
           ),
         ),

@@ -212,7 +212,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   },
                   child: const Text(
                     "Estimate",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                 ),
                 SizedBox(height: size.height * .02),
