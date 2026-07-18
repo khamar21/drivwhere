@@ -19,18 +19,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     super.dispose();
   }
 
+  // void _onConfirm() {
+  //   final email = emailController.text.trim();
+
+  //   if (email.isEmpty) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Please enter email or phone number")),
+  //     );
+  //     return;
+  //   }
+
+  //   Navigator.pushNamed(context, RouteNames.verification, arguments: true);
+  // }
   void _onConfirm() {
-    final email = emailController.text.trim();
-
-    if (email.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter email or phone number")),
-      );
-      return;
-    }
-
-    Navigator.pushNamed(context, RouteNames.verification, arguments: true);
-  }
+  Navigator.pushNamed(
+    context,
+    RouteNames.verification,
+    arguments: true,
+  );
+}
 
   @override
   Widget build(BuildContext context) {

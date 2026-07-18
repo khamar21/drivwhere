@@ -45,6 +45,8 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
         ],
 
         Container(
+          height: 48,
+          width: 388,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),
@@ -56,38 +58,35 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
               ),
             ],
           ),
-          child: TextFormField(
+          child: TextField(
             controller: widget.controller,
             obscureText: _obscureText,
-            validator: widget.validator,
+            //  validator: widget.validator,
             onChanged: widget.onChanged,
             textInputAction: widget.textInputAction,
             style: const TextStyle(fontSize: 14),
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: size.width * .04,
-              ),
+              hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 16),
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(
                 horizontal: size.width * .045,
                 vertical: size.height * .02,
               ),
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-                icon: Icon(
-                  _obscureText
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                  color: Colors.grey,
-                  size: 20,
-                ),
-              ),
+              // suffixIcon: IconButton(
+              //   onPressed: () {
+              //     setState(() {
+              //       _obscureText = !_obscureText;
+              //     });
+              //   },
+              //   // icon: Icon(
+              //   //   _obscureText
+              //   //       ? Icons.visibility_off_outlined
+              //   //       : Icons.visibility_outlined,
+              //   //   color: Colors.grey,
+              //   //   size: 20,
+              //   // ),
+              // ),
             ),
           ),
         ),

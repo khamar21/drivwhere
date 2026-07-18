@@ -2,6 +2,7 @@ import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/core/widgets/custom_button.dart';
 import 'package:drivehere/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
@@ -46,9 +47,12 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     SizedBox(height: size.height * .05),
 
-                    Image.asset(
-                      "assets/images/logo.png",
-                      width: size.width * .18,
+                    Center(
+                      child: Image.asset(
+                        "assets/images/logo.png",
+                        width: 72,
+                        height: 72,
+                      ),
                     ),
 
                     SizedBox(height: size.height * .02),
@@ -57,20 +61,21 @@ class _SignupScreenState extends State<SignupScreen> {
                       "Create an account",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
                         color: AppColors.primary,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 6),
 
                     Text(
                       "Join us today and start enjoying our\nservices",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: size.width * .045,
+                        fontSize: 16,
                         color: Colors.black54,
+                        height: 1.3,
                       ),
                     ),
 
@@ -90,7 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             "Sign up",
                             style: TextStyle(
                               fontSize: 28,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
 
@@ -226,11 +231,15 @@ class _SignupScreenState extends State<SignupScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Image.asset(
-                                          "assets/images/google.png",
-                                          width: 15,
-                                          height: 15,
-                                        ),
+                                        SvgPicture.asset(
+                                          "assets/images/google.svg",
+                                          width: 14,
+                                          height: 14,
+                                        ), // Image.asset(
+                                        //   "assets/images/google.png",
+                                        //   width: 15,
+                                        //   height: 15,
+                                        // ),
                                         const SizedBox(width: 2),
                                         Flexible(
                                           child: Text(
@@ -239,7 +248,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: const Color(0xFF666666),
-                                              fontSize: size.width * .028,
+                                              fontSize: 10,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -250,12 +259,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ),
                               ),
 
-                              const SizedBox(width: 4),
+                              const SizedBox(width: 3),
 
                               Expanded(
                                 child: SizedBox(
                                   height: 38,
-                                  width: 60,
+
                                   child: OutlinedButton(
                                     onPressed: () {},
                                     style: OutlinedButton.styleFrom(
@@ -275,23 +284,20 @@ class _SignupScreenState extends State<SignupScreen> {
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         const Icon(
                                           Icons.apple,
-                                          size: 18,
+                                          size: 16,
                                           color: Colors.black,
                                         ),
-                                        const SizedBox(width: 0),
-                                        Flexible(
-                                          child: Text(
-                                            "Continue with Apple",
-                                            textAlign: TextAlign.center,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              color: const Color(0xFF666666),
-                                              fontSize: size.width * .030,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                        const SizedBox(width: 1),
+                                        Text(
+                                          "Continue with Apple",
+                                          style: TextStyle(
+                                            color: Color(0xFF666666),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ],

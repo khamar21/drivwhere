@@ -24,30 +24,38 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
     super.dispose();
   }
 
+  // void _createPassword() {
+  //   final password = passwordController.text.trim();
+  //   final confirmPassword = confirmPasswordController.text.trim();
+
+  //   if (password.isEmpty || confirmPassword.isEmpty) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Please enter both password fields")),
+  //     );
+  //     return;
+  //   }
+
+  //   if (password != confirmPassword) {
+  //     ScaffoldMessenger.of(
+  //       context,
+  //     ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
+  //     return;
+  //   }
+
+  //   Navigator.pushNamedAndRemoveUntil(
+  //     context,
+  //     RouteNames.login,
+  //     (route) => false,
+  //   );
+  // }
+
   void _createPassword() {
-    final password = passwordController.text.trim();
-    final confirmPassword = confirmPasswordController.text.trim();
-
-    if (password.isEmpty || confirmPassword.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter both password fields")),
-      );
-      return;
-    }
-
-    if (password != confirmPassword) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
-      return;
-    }
-
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      RouteNames.login,
-      (route) => false,
-    );
-  }
+  Navigator.pushNamedAndRemoveUntil(
+    context,
+    RouteNames.login,
+    (route) => false,
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +119,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     hintText: "Re-enter Password",
                     textInputAction: TextInputAction.done,
                   ),
+                  
 
                   const Spacer(),
 

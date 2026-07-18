@@ -1,5 +1,7 @@
 import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
+import 'package:drivehere/core/widgets/custom_button.dart';
+import 'package:drivehere/core/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -10,76 +12,78 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
+  // bool _obscurePassword = true;
+  // bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
-  Widget passwordField({
-    required String label,
-    required String hint,
-    required TextEditingController controller,
-    required bool obscureText,
-    required VoidCallback onTap,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-        ),
+  void _createPassword() {
+  Navigator.pushNamedAndRemoveUntil(
+    context,
+    RouteNames.login,
+    (route) => false,
+  );
+}
 
-        const SizedBox(height: 10),
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         label,
+  //         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+  //       ),
 
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.10),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: TextField(
-            controller: controller,
-            obscureText: obscureText,
-            style: const TextStyle(fontSize: 14),
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: TextStyle(color: Colors.grey.shade500),
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 18,
-                vertical: 18,
-              ),
-              // suffixIcon: IconButton(
-              //   onPressed: onTap,
-              //   icon: Icon(
-              //     obscureText
-              //         ? Icons.visibility_off_outlined
-              //         : Icons.visibility_outlined,
-              //     color: Colors.grey,
-              //     size: 20,
-              //   ),
-              // ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  //       const SizedBox(height: 10),
+
+  //       Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white,
+  //           borderRadius: BorderRadius.circular(8),
+  //           boxShadow: [
+  //             BoxShadow(
+  //               color: Colors.black.withOpacity(.10),
+  //               blurRadius: 10,
+  //               offset: const Offset(0, 4),
+  //             ),
+  //           ],
+  //         ),
+  //         child: TextField(
+  //           controller: controller,
+  //           obscureText: obscureText,
+  //           style: const TextStyle(fontSize: 14),
+  //           decoration: InputDecoration(
+  //             hintText: hint,
+  //             hintStyle: TextStyle(color: Colors.grey.shade500),
+  //             border: InputBorder.none,
+  //             contentPadding: const EdgeInsets.symmetric(
+  //               horizontal: 18,
+  //               vertical: 18,
+  //             ),
+  //             // suffixIcon: IconButton(
+  //             //   onPressed: onTap,
+  //             //   icon: Icon(
+  //             //     obscureText
+  //             //         ? Icons.visibility_off_outlined
+  //             //         : Icons.visibility_outlined,
+  //             //     color: Colors.grey,
+  //             //     size: 20,
+  //             //   ),
+  //             // ),
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -126,94 +130,26 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
                   SizedBox(height: constraints.maxHeight * .05),
 
-                  passwordField(
-                    label: "Password",
-                    hint: "Enter Password",
-                    controller: _passwordController,
-                    obscureText: _obscurePassword,
-                    onTap: () {
-                      setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      });
-                    },
+                CustomPasswordField(
+                    controller: passwordController,
+                    labelText: "Password",
+                    hintText: "Enter Password",
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .02),
+                  SizedBox(height: constraints.maxHeight * .03),
 
-                  passwordField(
-                    label: "Confirm Password",
-                    hint: "Re-enter Password",
-                    controller: _confirmPasswordController,
-                    obscureText: _obscureConfirmPassword,
-                    onTap: () {
-                      setState(() {
-                        _obscureConfirmPassword = !_obscureConfirmPassword;
-                      });
-                    },
+                  CustomPasswordField(
+                    controller: confirmPasswordController,
+                    labelText: "Confirm Password",
+                    hintText: "Re-enter Password",
+                    textInputAction: TextInputAction.done,
                   ),
+                  
 
                   const Spacer(),
 
-                  SizedBox(
-                    width: double.infinity,
-                    height: 48,
+                  CustomButton(text: "Confirm", onPressed: _createPassword),
 
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffB00000),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      // onPressed: () {
-                      //   final password = _passwordController.text.trim();
-                      //   final confirmPassword = _confirmPasswordController.text
-                      //       .trim();
-
-                      //   if (password.isEmpty || confirmPassword.isEmpty) {
-                      //     ScaffoldMessenger.of(context).showSnackBar(
-                      //       const SnackBar(
-                      //         content: Text(
-                      //           "Please enter both password fields",
-                      //         ),
-                      //       ),
-                      //     );
-                      //     return;
-                      //   }
-
-                      //   if (password != confirmPassword) {
-                      //     ScaffoldMessenger.of(context).showSnackBar(
-                      //       const SnackBar(
-                      //         content: Text("Passwords do not match"),
-                      //       ),
-                      //     );
-                      //     return;
-                      //   }
-
-                      //   Navigator.pushNamedAndRemoveUntil(
-                      //     context,
-                      //     RouteNames.login,
-                      //     (route) => false,
-                      //   );
-                      // },
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          RouteNames.login,
-                          (route) => false,
-                        );
-                      },
-                      child: const Text(
-                        "Confirm",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
 
                   //   SizedBox(height: constraints.maxHeight * .03),
                 ],
