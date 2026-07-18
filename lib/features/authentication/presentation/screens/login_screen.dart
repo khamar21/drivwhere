@@ -2,6 +2,8 @@ import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/features/authentication/presentation/screens/pickup_drop_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,8 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> login() async {
     setState(() => isLoading = true);
-
-    // TODO: replace with actual login logic
     await Future.delayed(const Duration(seconds: 2));
 
     setState(() => isLoading = false);
@@ -62,24 +62,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       Center(
                         child: Image.asset(
                           "assets/images/logo.png",
-                          width: size.width * .18,
+                          width:72,
+                          height: 72,
                         ),
                       ),
-
-                      SizedBox(height: size.height * .02),
-
+                      SizedBox(height: 2),
                       Center(
                         child: Text(
                           "Welcome back!",
                           style: TextStyle(
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 36,
+                            fontWeight: FontWeight.w600,
                             color: AppColors.primary,
                           ),
                         ),
                       ),
 
-                      SizedBox(height: size.height * .01),
+                      SizedBox(height:6),
 
                       Center(
                         child: Text(
@@ -87,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.textPrimary,
-                            fontSize: size.width * 0.038,
+                            fontSize: 16,
                             height: 1.3,
                           ),
                         ),
@@ -115,8 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               "Log In",
                               style: TextStyle(
-                                fontSize: size.width * .07,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 28,
+                                fontWeight: FontWeight.w800,
                                 color: AppColors.textPrimary,
                               ),
                             ),
@@ -127,13 +126,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               "Email or Phone no.",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: size.width * .042,
+                                fontSize: 16,
                               ),
                             ),
 
                             SizedBox(height: size.height * .010),
                             SizedBox(
-                              height: 48, // Figma height
+                              height: 48,
+                              width: 340,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -188,13 +188,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
 
-                            SizedBox(height: size.height * .01),
+                            SizedBox(height: 12),
 
                             Text(
                               "Password",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: size.width * .042,
+                                fontSize: 16,
                               ),
                             ),
 
@@ -202,6 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             SizedBox(
                               height: 48,
+                              width: 340,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: AppColors.white,
@@ -235,17 +236,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                       vertical: 12,
                                     ),
 
-                                    suffixIcon: IconButton(
-                                      onPressed: togglePassword,
-                                      icon: Icon(
-                                        obscurePassword
-                                            ? Icons.visibility_off_outlined
-                                            : Icons.visibility_outlined,
-                                        size: 18,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-
+                                    // suffixIcon: IconButton(
+                                    //   onPressed: togglePassword,
+                                    //   icon: Icon(
+                                    //     obscurePassword
+                                    //         ? Icons.visibility_off_outlined
+                                    //         : Icons.visibility_outlined,
+                                    //     size: 18,
+                                    //     color: Colors.grey,
+                                    //   ),
+                                    // ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide.none,
@@ -289,7 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   "Forgot Password?",
                                   style: TextStyle(
                                     color: AppColors.primary,
-                                    fontSize: size.width * .035,
+                                    fontSize: 13,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -353,12 +353,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Image.asset(
-                                            "assets/images/google.png",
-                                            width: 15,
-                                            height: 15,
-                                          ),
-                                          const SizedBox(width: 2),
+                                          SvgPicture.asset(
+                                            "assets/images/google.svg",
+                                            width: 14,
+                                            height: 14,
+                                          ), // Image.asset(
+                                          //   "assets/images/google.png",
+                                          //   width: 15,
+                                          //   height: 15,
+                                          // ),
+                                         const SizedBox(width: 2),
                                           Flexible(
                                             child: Text(
                                               "Continue with Google",
@@ -366,7 +370,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 color: const Color(0xFF666666),
-                                                fontSize: size.width * .028,
+                                                fontSize: 10,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -377,12 +381,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
 
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 3),
 
                                 Expanded(
                                   child: SizedBox(
                                     height: 38,
-                                    width: 60,
+                                  
                                     child: OutlinedButton(
                                       onPressed: () {},
                                       style: OutlinedButton.styleFrom(
@@ -404,23 +408,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
                                           const Icon(
                                             Icons.apple,
-                                            size: 18,
+                                            size: 16,
                                             color: Colors.black,
                                           ),
-                                          const SizedBox(width: 0),
-                                          Flexible(
-                                            child: Text(
-                                              "Continue with Apple",
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                color: const Color(0xFF666666),
-                                                fontSize: size.width * .028,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                          const SizedBox(width: 1),
+                                          Text(
+                                            "Continue with Apple",
+                                            style: TextStyle(
+                                              color: Color(0xFF666666),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                         ],
@@ -482,32 +483,31 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             Center(
                               child: RichText(
+                                textAlign: TextAlign.center,
                                 text: TextSpan(
                                   style: TextStyle(
-                                    color: AppColors.textSecondary,
+                                    color: Colors.black,
                                     fontSize: size.width * .035,
+                                    fontFamily: 'Poppins', // if using
                                   ),
                                   children: [
                                     const TextSpan(
                                       text: "Don't have an account? ",
                                     ),
-                                    WidgetSpan(
-                                      child: GestureDetector(
-                                        onTap: () {
+                                    TextSpan(
+                                      text: "Create here",
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
                                           Navigator.pushNamed(
                                             context,
                                             RouteNames.signup,
                                           );
                                         },
-                                        child: Text(
-                                          "Create here",
-                                          style: TextStyle(
-                                            color: AppColors.primary,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: size.width * .035,
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                   ],
                                 ),

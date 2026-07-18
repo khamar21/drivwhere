@@ -66,15 +66,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
           fillColor: Colors.transparent,
           contentPadding: EdgeInsets.symmetric(vertical: size.height * .022),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none,
           ),
         ),
@@ -108,14 +108,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   SizedBox(height: constraints.maxHeight * .06),
                   Image.asset(
                     "assets/images/logo.png",
-                    width: constraints.maxWidth * .16,
+                    width: 72,
+                    height: 72,
                   ),
                   SizedBox(height: constraints.maxHeight * .035),
 
                   Text(
                     "Verify Account",
                     style: TextStyle(
-                      fontSize: constraints.maxWidth * .08,
+                      fontSize: 36,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
                     ),
@@ -126,20 +127,24 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   Text(
                     "An OTP will be sent to you.",
                     style: TextStyle(
-                      fontSize: constraints.maxWidth * .040,
+                      fontSize: 12,
                       color: const Color(0xFF787878),
                     ),
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .05),
+                  SizedBox(height: constraints.maxHeight * .04),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(
                       4,
-                      (index) => otpBox(
-                        index,
-                        Size(constraints.maxWidth, constraints.maxHeight),
+                      (index) => SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: otpBox(
+                          index,
+                          Size(constraints.maxWidth, constraints.maxHeight),
+                        ),
                       ),
                     ),
                   ),
@@ -156,6 +161,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           style: TextStyle(
                             color: Color(0xffC00000),
                             fontWeight: FontWeight.w500,
+
                           ),
                         ),
                       ],
@@ -198,7 +204,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                   ),
 
-                 // SizedBox(height: constraints.maxHeight * .03),
+                  // SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );

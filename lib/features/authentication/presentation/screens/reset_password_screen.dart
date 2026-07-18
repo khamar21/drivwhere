@@ -64,16 +64,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 horizontal: 18,
                 vertical: 18,
               ),
-              suffixIcon: IconButton(
-                onPressed: onTap,
-                icon: Icon(
-                  obscureText
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                  color: Colors.grey,
-                  size: 20,
-                ),
-              ),
+              // suffixIcon: IconButton(
+              //   onPressed: onTap,
+              //   icon: Icon(
+              //     obscureText
+              //         ? Icons.visibility_off_outlined
+              //         : Icons.visibility_outlined,
+              //     color: Colors.grey,
+              //     size: 20,
+              //   ),
+              // ),
             ),
           ),
         ),
@@ -101,17 +101,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 children: [
                   SizedBox(height: constraints.maxHeight * .06),
 
-                  Image.asset(
-                    "assets/images/logo.png",
-                    width: constraints.maxWidth * .16,
-                  ),
+                  Image.asset("assets/images/logo.png", width: 72, height: 72),
 
-                  SizedBox(height: constraints.maxHeight * .03),
+                  SizedBox(height: constraints.maxHeight * .035),
 
                   Text(
                     "Reset Password",
                     style: TextStyle(
-                      fontSize: constraints.maxWidth * .10,
+                      fontSize: 36,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xff990000),
                     ),
@@ -123,7 +120,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     "Enter password to secure your account.",
                     style: TextStyle(
                       color: const Color(0xFF787878),
-                      fontSize: constraints.maxWidth * .040,
+                      fontSize: 12,
                     ),
                   ),
 
@@ -159,40 +156,48 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
                   SizedBox(
                     width: double.infinity,
-                    height: 50,
+                    height: 48,
+
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xffB00000),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
+                      // onPressed: () {
+                      //   final password = _passwordController.text.trim();
+                      //   final confirmPassword = _confirmPasswordController.text
+                      //       .trim();
+
+                      //   if (password.isEmpty || confirmPassword.isEmpty) {
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //       const SnackBar(
+                      //         content: Text(
+                      //           "Please enter both password fields",
+                      //         ),
+                      //       ),
+                      //     );
+                      //     return;
+                      //   }
+
+                      //   if (password != confirmPassword) {
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //       const SnackBar(
+                      //         content: Text("Passwords do not match"),
+                      //       ),
+                      //     );
+                      //     return;
+                      //   }
+
+                      //   Navigator.pushNamedAndRemoveUntil(
+                      //     context,
+                      //     RouteNames.login,
+                      //     (route) => false,
+                      //   );
+                      // },
                       onPressed: () {
-                        final password = _passwordController.text.trim();
-                        final confirmPassword = _confirmPasswordController.text
-                            .trim();
-
-                        if (password.isEmpty || confirmPassword.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                "Please enter both password fields",
-                              ),
-                            ),
-                          );
-                          return;
-                        }
-
-                        if (password != confirmPassword) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Passwords do not match"),
-                            ),
-                          );
-                          return;
-                        }
-
                         Navigator.pushNamedAndRemoveUntil(
                           context,
                           RouteNames.login,
@@ -210,7 +215,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     ),
                   ),
 
-               //   SizedBox(height: constraints.maxHeight * .03),
+                  //   SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );

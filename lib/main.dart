@@ -3,6 +3,7 @@ import 'package:drivehere/core/routes/app_routes.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(
@@ -23,6 +24,11 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       initialRoute: RouteNames.splash,
       onGenerateRoute: AppRoutes.onGenerateRoute,
+      theme: ThemeData(
+        useMaterial3: true,
+        textTheme: GoogleFonts.poppinsTextTheme(),
+      ),
+
     );
   }
 }

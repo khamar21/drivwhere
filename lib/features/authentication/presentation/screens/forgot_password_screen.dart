@@ -48,24 +48,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: constraints.maxHeight * .04),
+                  SizedBox(height: constraints.maxHeight * .06),
 
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Image.asset(
                       "assets/images/logo.png",
-                      width: constraints.maxWidth * .16,
+                      width: 72,
+                      height: 72,
                     ),
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .03),
+                  SizedBox(height: constraints.maxHeight * .035),
 
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Forgot Password",
                       style: TextStyle(
-                        fontSize: constraints.maxWidth * .08,
+                        fontSize: 36,
                         fontWeight: FontWeight.w700,
                         color: AppColors.primary,
                       ),
@@ -79,7 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: Text(
                       "Enter registered email id or phone no.",
                       style: TextStyle(
-                        fontSize: constraints.maxWidth * .040,
+                        fontSize: 12,
                         color: const Color(0xFF787878),
                       ),
                     ),
@@ -92,7 +93,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: Text(
                       "Email or Phone no.",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -174,7 +175,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     ),
                   ),
 
-                 // SizedBox(height: constraints.maxHeight * .03),
+                  // SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );
