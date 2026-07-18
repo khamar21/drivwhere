@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomPasswordField extends StatefulWidget {
   const CustomPasswordField({
@@ -73,6 +74,14 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
                 horizontal: size.width * .045,
                 vertical: size.height * .02,
               ),
+             suffixIcon: Padding(
+      padding: const EdgeInsets.all(12),
+      child: SvgPicture.asset(
+        "assets/images/eye.svg",
+        width: 20,
+        height: 20,
+      ),
+    ),
               // suffixIcon: IconButton(
               //   onPressed: () {
               //     setState(() {

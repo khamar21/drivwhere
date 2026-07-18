@@ -55,7 +55,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
 
-                    SizedBox(height:2),
+                    SizedBox(height: 2),
 
                     Center(
                       child: Text(
@@ -167,9 +167,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                       children: [
                                         TextSpan(
                                           text: "Do you agree to Drivwheres ",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                          )
+                                          style: TextStyle(fontSize: 10),
                                         ),
                                         TextSpan(
                                           text: "Terms & conditions",
@@ -319,19 +317,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           CustomButton(
                             text: "Sign Up",
                             onPressed: () {
-                              final input = emailController.text.trim();
-
-                              if (input.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      "Please enter email or phone number",
-                                    ),
-                                  ),
-                                );
-                                return;
-                              }
-
                               Navigator.pushNamed(
                                 context,
                                 RouteNames.verification,

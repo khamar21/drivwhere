@@ -1,197 +1,113 @@
 import 'package:flutter/material.dart';
-
 import '../constants/app_colors.dart';
 
-class EstimateCard extends StatefulWidget {
+class EstimateCard extends StatelessWidget {
   const EstimateCard({super.key});
-
-  @override
-  State<EstimateCard> createState() => _EstimateCardState();
-}
-
-class _EstimateCardState extends State<EstimateCard> {
-  bool foodProvided = false;
-  bool accommodationProvided = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.06),
-            blurRadius: 10,
+            blurRadius: 8,
             offset: const Offset(0, 4),
           ),
         ],
       ),
-      child: Column(
+      child: Table(
+        columnWidths: const {
+          0: FlexColumnWidth(3.5),
+          1: FlexColumnWidth(1.5),
+          2: FlexColumnWidth(1),
+          3: FlexColumnWidth(1.8),
+        },
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
-          const Row(
+          const TableRow(
             children: [
-              Expanded(
-                flex: 4,
+              Padding(
+                padding: EdgeInsets.only(bottom: 12),
                 child: Text(
-                  "Fee types",
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                  "Fee Type",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-              Expanded(
-               flex: 3,
+              Padding(
+                padding: EdgeInsets.only(bottom: 12),
                 child: Text(
-                  "Per day",
+                  "Per Day",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-              Expanded(
+              Padding(
+                padding: EdgeInsets.only(bottom: 12),
                 child: Text(
                   "Days",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-              Expanded(
-                flex: 1,
+              Padding(
+                padding: EdgeInsets.only(bottom: 12),
                 child: Text(
-                  "2400",
+                  "Total",
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     color: AppColors.primary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
             ],
           ),
 
-          const SizedBox(height: 14),
-
-          _feeRow(
-            title: "Driver fee",
-            perDay: "600",
-            days: "4",
-            total: "Total",
-            totalColor: AppColors.primary,
-          ),
-
-          const SizedBox(height: 10),
-
-          _feeRow(
-            title: "Food Allowance",
-            perDay: "600",
-            days: "4",
-            total: "2400",
-            totalColor: AppColors.primary,
-            checkbox: Checkbox(
-              value: foodProvided,
-              activeColor: AppColors.primary,
-              onChanged: (v) {
-                setState(() {
-                  foodProvided = v!;
-                });
-              },
-            ),
-          ),
-
-          const SizedBox(height: 10),
-
-          _feeRow(
-            title: "Accommodation",
-            perDay: "0",
-            days: "4",
-            total: "0",
-            totalColor: AppColors.primary,
-            checkbox: Checkbox(
-              value: accommodationProvided,
-              activeColor: AppColors.primary,
-              onChanged: (v) {
-                setState(() {
-                  accommodationProvided = v!;
-                });
-              },
-            ),
-          ),
-
-          const SizedBox(height: 14),
-
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: const [
-          //     Text(
-          //       "Total",
-          //       style: TextStyle(
-          //         color: AppColors.primary,
-          //         fontWeight: FontWeight.bold,
-          //         fontSize: 18,
-          //       ),
-          //     ),
-          //     Text(
-          //       "4800 ₹",
-          //       style: TextStyle(
-          //         color: AppColors.primary,
-          //         fontWeight: FontWeight.bold,
-          //         fontSize: 18,
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          _row("Driver Fee", "600", "4", "2400"),
+          _row("Food Allowance", "600", "4", "2400"),
+          _row("Accommodation", "0", "4", "0"),
         ],
       ),
     );
   }
 
-  Widget _feeRow({
-    required String title,
-    required String perDay,
-    required String days,
-    required String total,
-    required Color totalColor,
-    Widget? checkbox,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  static TableRow _row(String title, String perDay, String days, String total) {
+    return TableRow(
       children: [
-        Expanded(
-          flex: 4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: const TextStyle(fontSize: 13)),
-              if (checkbox != null)
-                Row(
-                  children: [
-                   // SizedBox(width: 18, height: 18, child: checkbox),
-                    const SizedBox(width: 6),
-                    // const Expanded(
-                    //   child: Text(
-                    //     "If provided by client",
-                    //     maxLines: 2,
-                    //     overflow: TextOverflow.ellipsis,
-                    //     style: TextStyle(color: Colors.grey, fontSize: 12),
-                    //   ),
-                    // ),
-                  ],
-                ),
-            ],
-          ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text(title),
         ),
-        Expanded(flex: 2, child: Text(perDay, textAlign: TextAlign.center)),
-        Expanded(child: Text(days, textAlign: TextAlign.center)),
-        Expanded(
-          flex: 2,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text(perDay, textAlign: TextAlign.center),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text(days, textAlign: TextAlign.center),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
             total,
             textAlign: TextAlign.end,
-            style: TextStyle(
-              color: totalColor,
+            style: const TextStyle(
+              color: AppColors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: 12,
             ),
           ),
         ),
