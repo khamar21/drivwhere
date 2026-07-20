@@ -197,7 +197,6 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                   rate: "150₹/hr",
                 ),
                SizedBox(height: size.height * .015),
-
               ],
             ),
           ),

@@ -6,13 +6,13 @@ enum EstimateCardType { table, extraHours }
 class EstimateCard extends StatelessWidget {
   final EstimateCardType type;
 
-  // For Extra Hours
+ 
   final String? leftTitle;
   final String? leftSubtitle;
   final String? amount;
   final String? rate;
 
-  // For Table
+
   final List<EstimateRow>? rows;
 
   const EstimateCard({
@@ -48,7 +48,7 @@ class EstimateCard extends StatelessWidget {
         border: Border.all(color: const Color(0xffB40E0E), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
             offset: const Offset(0, 8),
           ),
@@ -107,19 +107,19 @@ class EstimateCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.06),
+            color: Colors.black.withValues(alpha: .06),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Table(
-        columnWidths: const {
-          0: FlexColumnWidth(3.5),
-          1: FlexColumnWidth(1.5),
-          2: FlexColumnWidth(1),
-          3: FlexColumnWidth(1.8),
-        },
+        // columnWidths: const {
+        //   0: FlexColumnWidth(3.5),
+        //   1: FlexColumnWidth(1.5),
+        //   2: FlexColumnWidth(1),
+        //   3: FlexColumnWidth(1.8),
+        // },
         children: [
           const TableRow(
             children: [

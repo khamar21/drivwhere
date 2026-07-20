@@ -21,7 +21,7 @@ class TimeBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.08),
+              color: Colors.black.withValues(alpha: .08),
               blurRadius: 8,
               offset: const Offset(0, 3),
             ),

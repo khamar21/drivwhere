@@ -58,7 +58,7 @@ class VehicleSection extends StatelessWidget {
             ),
 
             style: OutlinedButton.styleFrom(
-              backgroundColor: const Color(0xFF9A0003).withOpacity(0.1),
+              backgroundColor: const Color(0xFF9A0003).withValues(alpha: .1),
               side: const BorderSide(color: AppColors.primary),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),

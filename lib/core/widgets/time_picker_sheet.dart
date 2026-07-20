@@ -62,7 +62,7 @@ class TimePickerSheet {
                               height: 44,
                               margin: const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
-                                color: AppColors.primary.withOpacity(.08),
+                                color: AppColors.primary.withValues(alpha: .08),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),

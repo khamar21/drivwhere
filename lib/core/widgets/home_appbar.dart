@@ -30,7 +30,10 @@ class HomeAppBarWidget extends StatelessWidget {
             'assets/images/bell_icon.svg',
             width: 25,
             height: 25,
-            color: AppColors.primary,
+           colorFilter: ColorFilter.mode(
+            AppColors.primary,
+            BlendMode.srcIn,
+           ),
           ),
         ),
       ],

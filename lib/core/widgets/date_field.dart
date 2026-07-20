@@ -27,7 +27,7 @@ class DateField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.15),
+              color: Colors.black.withValues( alpha:.15),
               blurRadius: 5,
               spreadRadius: 0,
               offset: const Offset(0, 5),
@@ -58,9 +58,12 @@ class DateField extends StatelessWidget {
               "assets/images/calendar.svg",
               width: 18,
               height: 18,
-              color: AppColors.primary,
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
               
-            )
+            ),
           ],
         ),
       ),

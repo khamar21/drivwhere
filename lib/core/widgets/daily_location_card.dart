@@ -19,7 +19,7 @@ class DailyLocationCard extends StatelessWidget {
 
         boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.15),
+              color: Colors.black.withValues(alpha: .15),
               blurRadius: 5,
               spreadRadius: 0,
               offset: const Offset(0, 5),

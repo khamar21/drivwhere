@@ -27,7 +27,7 @@ class _DateSelectorState extends State<DateSelector> {
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
         scrollDirection: Axis.horizontal,
         itemCount: 365,
-        separatorBuilder: (_, __) => const SizedBox(width: 10),
+        separatorBuilder: (_, _) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
           final date = startDate.add(Duration(days: index));
 
@@ -45,7 +45,7 @@ class _DateSelectorState extends State<DateSelector> {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
+                    color: Colors.black.withValues(alpha: .15),
                     blurRadius: 5,
                     offset: const Offset(0, 5),
                   ),
