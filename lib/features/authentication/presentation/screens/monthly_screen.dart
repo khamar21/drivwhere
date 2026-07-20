@@ -84,7 +84,7 @@ class _MonthlyScreenState extends State<MonthlyScreen> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: size.width * .05),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

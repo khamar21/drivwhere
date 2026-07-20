@@ -36,7 +36,7 @@ class _SignupScreenState extends State<SignupScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 padding: EdgeInsets.only(
                   left: size.width * .05,
                   right: size.width * .05,

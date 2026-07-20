@@ -8,7 +8,6 @@ class TimeBox extends StatelessWidget {
   final String value;
   final VoidCallback? onTap;
   final double width;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(

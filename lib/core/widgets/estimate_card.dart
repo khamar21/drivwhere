@@ -1,11 +1,104 @@
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
+enum EstimateCardType { table, extraHours }
+
 class EstimateCard extends StatelessWidget {
-  const EstimateCard({super.key});
+  final EstimateCardType type;
+
+  // For Extra Hours
+  final String? leftTitle;
+  final String? leftSubtitle;
+  final String? amount;
+  final String? rate;
+
+  // For Table
+  final List<EstimateRow>? rows;
+
+  const EstimateCard({
+    super.key,
+    this.type = EstimateCardType.table,
+    this.leftTitle,
+    this.leftSubtitle,
+    this.amount,
+    this.rate,
+    this.rows,
+  });
 
   @override
   Widget build(BuildContext context) {
+    switch (type) {
+      case EstimateCardType.extraHours:
+        return _extraHourCard();
+
+      case EstimateCardType.table:
+      //default:
+        return _tableCard();
+    }
+  }
+
+  Widget _extraHourCard() {
+    return Container(
+      width: double.infinity,
+      height: 73,
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xffFDF6F6),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xffB40E0E), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.08),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  leftTitle ?? "",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  leftSubtitle ?? "",
+                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+              ],
+            ),
+          ),
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                amount ?? "",
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                rate ?? "",
+                style: const TextStyle(fontSize: 14, color: Colors.black54),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _tableCard() {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -27,7 +120,6 @@ class EstimateCard extends StatelessWidget {
           2: FlexColumnWidth(1),
           3: FlexColumnWidth(1.8),
         },
-        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
           const TableRow(
             children: [
@@ -70,48 +162,58 @@ class EstimateCard extends StatelessWidget {
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     color: AppColors.primary,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ],
           ),
 
-          _row("Driver Fee", "600", "4", "2400"),
-          _row("Food Allowance", "600", "4", "2400"),
-          _row("Accommodation", "0", "4", "0"),
+          ...(rows ?? []).map(
+            (e) => TableRow(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(e.title),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(e.perDay, textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(e.days, textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    e.total,
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
+}
 
-  static TableRow _row(String title, String perDay, String days, String total) {
-    return TableRow(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(title),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(perDay, textAlign: TextAlign.center),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(days, textAlign: TextAlign.center),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-            total,
-            textAlign: TextAlign.end,
-            style: const TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+class EstimateRow {
+  final String title;
+  final String perDay;
+  final String days;
+  final String total;
+
+  EstimateRow({
+    required this.title,
+    required this.perDay,
+    required this.days,
+    required this.total,
+  });
 }

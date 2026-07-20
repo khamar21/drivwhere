@@ -9,7 +9,6 @@ class ForgotPasswordScreen extends StatefulWidget {
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
-
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController emailController = TextEditingController();
 
@@ -18,7 +17,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     emailController.dispose();
     super.dispose();
   }
-
   // void _onConfirm() {
   //   final email = emailController.text.trim();
 
@@ -38,7 +36,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     arguments: true,
   );
 }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +53,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: constraints.maxHeight * .06),
-
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Image.asset(
@@ -65,9 +61,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       height: 72,
                     ),
                   ),
-
                   SizedBox(height: constraints.maxHeight * .035),
-
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(

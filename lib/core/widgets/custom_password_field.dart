@@ -24,7 +24,7 @@ class CustomPasswordField extends StatefulWidget {
 }
 
 class _CustomPasswordFieldState extends State<CustomPasswordField> {
-  bool _obscureText = true;
+  // bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
           ),
           child: TextField(
             controller: widget.controller,
-            obscureText: _obscureText,
+            // obscureText: _obscureText,
             //  validator: widget.validator,
             onChanged: widget.onChanged,
             textInputAction: widget.textInputAction,
@@ -74,14 +74,14 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
                 horizontal: size.width * .045,
                 vertical: size.height * .02,
               ),
-             suffixIcon: Padding(
-      padding: const EdgeInsets.all(12),
-      child: SvgPicture.asset(
-        "assets/images/eye.svg",
-        width: 20,
-        height: 20,
-      ),
-    ),
+              suffixIcon: Padding(
+                padding: const EdgeInsets.all(12),
+                child: SvgPicture.asset(
+                  "assets/images/eye.svg",
+                  width: 20,
+                  height: 20,
+                ),
+              ),
               // suffixIcon: IconButton(
               //   onPressed: () {
               //     setState(() {

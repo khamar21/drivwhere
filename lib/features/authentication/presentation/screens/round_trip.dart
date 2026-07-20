@@ -1,25 +1,24 @@
 import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
+import 'package:drivehere/core/widgets/daily_location_card.dart';
 import 'package:drivehere/core/widgets/estimate_card.dart';
 import 'package:drivehere/core/widgets/home_appbar.dart';
-import 'package:drivehere/features/authentication/presentation/screens/round_trip.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/date_selector.dart';
-import '../../../../core/widgets/location_card.dart';
 import '../../../../core/widgets/time_box.dart';
 import '../../../../core/widgets/time_picker_sheet.dart';
 import '../../../../core/widgets/vehicle_section.dart';
 import 'daily_screen.dart';
 
-class PickupDropScreen extends StatefulWidget {
-  const PickupDropScreen({super.key});
+class RoundTripScreen extends StatefulWidget {
+  const RoundTripScreen({super.key});
 
   @override
-  State<PickupDropScreen> createState() => _PickupDropScreenState();
+  State<RoundTripScreen> createState() => _RoundTrippScreenState();
 }
 
-class _PickupDropScreenState extends State<PickupDropScreen> {
+class _RoundTrippScreenState extends State<RoundTripScreen> {
   static const List<String> _months = [
     "January",
     "February",
@@ -101,43 +100,14 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: size.height * .015),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Image.asset(
-                //       "assets/images/logo.png",
-                //       width: size.width * .10,
-                //     ),
-                //     Image.asset(
-                //       "assets/images/dvrlogo.png",
-                //       width: size.width * .30,
-                //     ),
-                //     const Icon(
-                //       Icons.notifications_none_rounded,
-                //       color: AppColors.primary,
-                //       size: 25,
-                //     ),
-                //   ],
-                // ),
                 const HomeAppBarWidget(),
                 SizedBox(height: size.height * .03),
-                // SizedBox(height: size.height * .035),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const RoundTripScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "PICK UP & DROP",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-                  ),
+                const Text(
+                  "Round trip",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(height: size.height * .025),
-                const LocationCard(),
+                const DailyLocationCard(),
                 SizedBox(height: size.height * .035),
                 const Text(
                   "Select Date",
@@ -219,8 +189,15 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   ),
                 ),
                 SizedBox(height: size.height * .02),
-                const EstimateCard(),
-                SizedBox(height: size.height * .10),
+                const EstimateCard(
+                  type: EstimateCardType.extraHours,
+                  leftTitle: "2hr",
+                  leftSubtitle: "Extra hours",
+                  amount: "350₹",
+                  rate: "150₹/hr",
+                ),
+               SizedBox(height: size.height * .015),
+
               ],
             ),
           ),

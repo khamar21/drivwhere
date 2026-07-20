@@ -15,10 +15,9 @@ class BottomNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       padding: const EdgeInsets.fromLTRB(20, 15, 20, 25),
       decoration: const BoxDecoration(
-      color: AppColors.white,
+        color: AppColors.white,
         // boxShadow: [
         //   BoxShadow(
         //     color: Colors.black12,
@@ -36,9 +35,7 @@ class BottomNavigationWidget extends StatelessWidget {
                 onPressed: onBack,
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(44),
-                  side: const BorderSide(
-                    color: Colors.grey,
-                  ),
+                  side: const BorderSide(color: Colors.grey),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

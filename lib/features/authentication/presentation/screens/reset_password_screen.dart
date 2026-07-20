@@ -103,11 +103,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: constraints.maxHeight * .06),
-
                   Image.asset("assets/images/logo.png", width: 72, height: 72),
-
                   SizedBox(height: constraints.maxHeight * .035),
-
                   Text(
                     "Reset Password",
                     style: TextStyle(
@@ -116,9 +113,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       color: const Color(0xff990000),
                     ),
                   ),
-
                   const SizedBox(height: 2),
-
                   Text(
                     "Enter password to secure your account.",
                     style: TextStyle(
@@ -127,8 +122,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     ),
                   ),
 
-                  SizedBox(height: constraints.maxHeight * .05),
-
+                  SizedBox(height: constraints.maxHeight * .03),
                 CustomPasswordField(
                     controller: passwordController,
                     labelText: "Password",
@@ -143,14 +137,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     hintText: "Re-enter Password",
                     textInputAction: TextInputAction.done,
                   ),
-                  
-
                   const Spacer(),
-
                   CustomButton(text: "Confirm", onPressed: _createPassword),
-
-
-                  //   SizedBox(height: constraints.maxHeight * .03),
+                 //  SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),
             );

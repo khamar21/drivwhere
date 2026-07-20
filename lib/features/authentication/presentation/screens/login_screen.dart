@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 padding: EdgeInsets.only(bottom: size.height * .02),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * .06),
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Center(
                         child: Image.asset(
                           "assets/images/logo.png",
-                          width:72,
+                          width: 72,
                           height: 72,
                         ),
                       ),
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
 
-                      SizedBox(height:6),
+                      SizedBox(height: 6),
 
                       Center(
                         child: Text(
@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(height: size.height * .010),
                             SizedBox(
                               height: 48,
-                              width: 340,
+                              width: double.infinity,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -362,7 +362,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           //   width: 15,
                                           //   height: 15,
                                           // ),
-                                         const SizedBox(width: 2),
+                                          const SizedBox(width: 2),
                                           Flexible(
                                             child: Text(
                                               "Continue with Google",
@@ -386,7 +386,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Expanded(
                                   child: SizedBox(
                                     height: 38,
-                                  
                                     child: OutlinedButton(
                                       onPressed: () {},
                                       style: OutlinedButton.styleFrom(
@@ -432,7 +431,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ],
                             ),
                             SizedBox(height: size.height * .03),
-
                             SizedBox(
                               width: double.infinity,
                               height: size.height * .06,
@@ -478,9 +476,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                               ),
                             ),
-
                             SizedBox(height: size.height * .03),
-
                             Center(
                               child: RichText(
                                 textAlign: TextAlign.center,
@@ -513,8 +509,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-
-                            SizedBox(height: size.height * .03),
+                            SizedBox(height: size.height * .015),
                           ],
                         ),
                       ),
