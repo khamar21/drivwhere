@@ -62,7 +62,6 @@ class DateField extends StatelessWidget {
                 AppColors.primary,
                 BlendMode.srcIn,
               ),
-              
             ),
           ],
         ),

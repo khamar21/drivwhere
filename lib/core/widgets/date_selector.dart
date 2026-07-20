@@ -30,12 +30,10 @@ class _DateSelectorState extends State<DateSelector> {
         separatorBuilder: (_, _) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
           final date = startDate.add(Duration(days: index));
-
           final selected =
               date.year == widget.selectedDate.year &&
               date.month == widget.selectedDate.month &&
               date.day == widget.selectedDate.day;
-
           return GestureDetector(
             onTap: () => widget.onDateSelected(date),
             child: Container(

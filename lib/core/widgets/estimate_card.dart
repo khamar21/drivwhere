@@ -6,12 +6,10 @@ enum EstimateCardType { table, extraHours }
 class EstimateCard extends StatelessWidget {
   final EstimateCardType type;
 
- 
   final String? leftTitle;
   final String? leftSubtitle;
   final String? amount;
   final String? rate;
-
 
   final List<EstimateRow>? rows;
 
@@ -32,7 +30,7 @@ class EstimateCard extends StatelessWidget {
         return _extraHourCard();
 
       case EstimateCardType.table:
-      //default:
+        //default:
         return _tableCard();
     }
   }
@@ -40,8 +38,8 @@ class EstimateCard extends StatelessWidget {
   Widget _extraHourCard() {
     return Container(
       width: double.infinity,
-      height: 73,
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      height: double.infinity,
+      padding: const EdgeInsets.only(left: 30, top: 10, bottom: 5, right: 30),
       decoration: BoxDecoration(
         color: const Color(0xffFDF6F6),
         borderRadius: BorderRadius.circular(8),
@@ -63,14 +61,14 @@ class EstimateCard extends StatelessWidget {
                 Text(
                   leftTitle ?? "",
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 4),
                 Text(
                   leftSubtitle ?? "",
-                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                  style: const TextStyle(fontSize: 12, color: Colors.black54),
                 ),
               ],
             ),
@@ -82,14 +80,14 @@ class EstimateCard extends StatelessWidget {
               Text(
                 amount ?? "",
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 4),
               Text(
                 rate ?? "",
-                style: const TextStyle(fontSize: 14, color: Colors.black54),
+                style: const TextStyle(fontSize: 12, color: Colors.black54),
               ),
             ],
           ),
@@ -97,7 +95,6 @@ class EstimateCard extends StatelessWidget {
       ),
     );
   }
-
   Widget _tableCard() {
     return Container(
       width: double.infinity,
