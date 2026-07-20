@@ -56,7 +56,6 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
     (route) => false,
   );
 }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,14 +75,11 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: constraints.maxHeight * .08),
-
                   Image.asset(
                     "assets/images/logo.png",
                     width: constraints.maxWidth * .16,
                   ),
-
                   SizedBox(height: constraints.maxHeight * .03),
-
                   Text(
                     "Create Password",
                     style: TextStyle(
@@ -104,27 +100,20 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                   ),
 
                   SizedBox(height: constraints.maxHeight * .05),
-
                   CustomPasswordField(
                     controller: passwordController,
                     labelText: "Password",
                     hintText: "Enter Password",
                   ),
-
                   SizedBox(height: constraints.maxHeight * .03),
-
                   CustomPasswordField(
                     controller: confirmPasswordController,
                     labelText: "Confirm Password",
                     hintText: "Re-enter Password",
                     textInputAction: TextInputAction.done,
                   ),
-                  
-
                   const Spacer(),
-
                   CustomButton(text: "Confirm", onPressed: _createPassword),
-
                   //  SizedBox(height: constraints.maxHeight * .03),
                 ],
               ),

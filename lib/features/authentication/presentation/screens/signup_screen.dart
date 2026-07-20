@@ -46,7 +46,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Column(
                   children: [
                     SizedBox(height: size.height * .05),
-
                     Center(
                       child: Image.asset(
                         "assets/images/logo.png",
@@ -54,9 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         height: 72,
                       ),
                     ),
-
                     SizedBox(height: 2),
-
                     Center(
                       child: Text(
                         "Create an account",
@@ -68,9 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 6),
-
                     Text(
                       "Join us today and start enjoying our\nservices",
                       textAlign: TextAlign.center,
@@ -80,9 +75,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         height: 1.3,
                       ),
                     ),
-
                     SizedBox(height: size.height * .04),
-
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(size.width * .05),
@@ -100,9 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               fontWeight: FontWeight.w800,
                             ),
                           ),
-
                           SizedBox(height: size.height * .03),
-
                           Text(
                             "Email or Phone no.",
                             style: TextStyle(
@@ -110,17 +101,13 @@ class _SignupScreenState extends State<SignupScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-
                           SizedBox(height: size.height * .010),
-
                           CustomTextField(
                             controller: emailController,
                             hintText: "Enter email or phone no",
                             keyboardType: TextInputType.emailAddress,
                           ),
-
                           SizedBox(height: size.height * .015),
-
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -152,16 +139,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                         )
                                       : null,
                                 ),
-
                                 const SizedBox(width: 6),
-
                                 Expanded(
                                   child: RichText(
                                     text: const TextSpan(
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 11,
-
                                         // fontWeight: FontWeight.w400,
                                       ),
                                       children: [
@@ -184,13 +168,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               ],
                             ),
                           ),
-
                           SizedBox(height: size.height * .050),
-
                           Row(
                             children: [
                               const Expanded(child: Divider(thickness: 1)),
-
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 14,
@@ -203,13 +184,10 @@ class _SignupScreenState extends State<SignupScreen> {
                                   ),
                                 ),
                               ),
-
                               const Expanded(child: Divider(thickness: 1)),
                             ],
                           ),
-
                           SizedBox(height: size.height * .03),
-
                           Row(
                             children: [
                               Expanded(
@@ -262,9 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   ),
                                 ),
                               ),
-
                               const SizedBox(width: 3),
-
                               Expanded(
                                 child: SizedBox(
                                   height: 38,
@@ -311,9 +287,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             ],
                           ),
-
                           SizedBox(height: size.height * .05),
-
                           CustomButton(
                             text: "Sign Up",
                             onPressed: () {
@@ -323,9 +297,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               );
                             },
                           ),
-
                           SizedBox(height: size.height * .03),
-
                           Center(
                             child: RichText(
                               text: TextSpan(
@@ -356,7 +328,6 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             ),
                           ),
-
                           SizedBox(height: size.height * .03),
                         ],
                       ),

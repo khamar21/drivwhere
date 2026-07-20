@@ -13,7 +13,6 @@ import '../../../../core/constants/app_colors.dart';
 
 class DailyScreen extends StatefulWidget {
   const DailyScreen({super.key});
-
   @override
   State<DailyScreen> createState() => _DailyScreenState();
 }
@@ -21,11 +20,9 @@ class DailyScreen extends StatefulWidget {
 class _DailyScreenState extends State<DailyScreen> {
   DateTime? fromDate;
   DateTime? toDate;
-
   String hour = "8";
   String minute = "00";
   String period = "PM";
-
   Future<void> pickDate(bool isFrom) async {
     final pickedDate = await showDatePicker(
       context: context,
@@ -33,9 +30,7 @@ class _DailyScreenState extends State<DailyScreen> {
       firstDate: DateTime.now(),
       lastDate: DateTime(2035),
     );
-
     if (pickedDate == null) return;
-
     setState(() {
       if (isFrom) {
         fromDate = pickedDate;
@@ -44,13 +39,10 @@ class _DailyScreenState extends State<DailyScreen> {
       }
     });
   }
-
   String formatDate(DateTime? date) {
     if (date == null) return "Select date";
-
     return "${date.day}/${date.month}/${date.year}";
   }
-
   Future<void> openTimePicker() async {
     final result = await TimePickerSheet.show(
       context: context,
@@ -58,7 +50,6 @@ class _DailyScreenState extends State<DailyScreen> {
       minute: minute,
       period: period,
     );
-
     if (result != null) {
       setState(() {
         hour = result["hour"]!;
@@ -67,11 +58,9 @@ class _DailyScreenState extends State<DailyScreen> {
       });
     }
   }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       // backgroundColor: AppColors.bg,
       bottomNavigationBar: BottomNavigationWidget(
@@ -120,8 +109,6 @@ class _DailyScreenState extends State<DailyScreen> {
 
                 const HomeAppBarWidget(),
                  SizedBox(height: size.height *.03),
-
-                 
                // SizedBox(height: size.height * .04),
                 GestureDetector(
                   onTap: () {

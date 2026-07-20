@@ -25,7 +25,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     confirmPasswordController.dispose();
     super.dispose();
   }
-
   void _createPassword() {
   Navigator.pushNamedAndRemoveUntil(
     context,

@@ -67,7 +67,6 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       bottomNavigationBar: BottomNavigationWidget(
         onBack: () {
@@ -99,7 +98,6 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: size.height * .015),
-
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //   children: [
@@ -121,16 +119,13 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                 const HomeAppBarWidget(),
                  SizedBox(height: size.height *.03),
                // SizedBox(height: size.height * .035),
-
                 const Text(
                   "PICK UP & DROP",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(height: size.height * .025),
-
                 const LocationCard(),
                 SizedBox(height: size.height * .035),
-
                 const Text(
                   "Select Date",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
@@ -164,19 +159,16 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   ],
                 ),
                 SizedBox(height: size.height * .001),
-
                 DateSelector(
                   selectedDate: selectedDate,
                   onDateSelected: (date) => setState(() => selectedDate = date),
                 ),
                 SizedBox(height: size.height * .04),
-
                 const Text(
                   "Select Pick Up Time",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: size.height * .02),
-
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -199,10 +191,8 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   ),
                 ),
                 SizedBox(height: size.height * .04),
-
                 const VehicleSection(),
                 SizedBox(height: size.height * .04),
-
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -216,9 +206,7 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                   ),
                 ),
                 SizedBox(height: size.height * .02),
-
                const EstimateCard(),
-
                 SizedBox(height: size.height * .10),
               ],
             ),
