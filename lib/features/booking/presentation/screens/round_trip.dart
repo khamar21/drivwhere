@@ -1,8 +1,5 @@
 import 'package:drivehere/features/booking/presentation/screens/daily_screen.dart';
 import 'package:drivehere/features/booking/presentation/widgets/bottom_navigation_widget.dart';
-// import 'package:drivehere/core/widgets/daily_location_card.dart';
-// import 'package:drivehere/core/widgets/estimate_card.dart';
-// import 'package:drivehere/core/widgets/home_appbar.dart';
 import 'package:drivehere/features/booking/presentation/widgets/daily_location_card.dart';
 import 'package:drivehere/features/booking/presentation/widgets/date_selector.dart';
 import 'package:drivehere/features/booking/presentation/widgets/estimate_card.dart';
@@ -11,9 +8,7 @@ import 'package:drivehere/features/booking/presentation/widgets/vehicle_section.
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
-
 import '../widgets/time_box.dart';
-import '../widgets/time_picker_sheet.dart';
 
 class RoundTripScreen extends StatefulWidget {
   const RoundTripScreen({super.key});
@@ -23,49 +18,17 @@ class RoundTripScreen extends StatefulWidget {
 }
 
 class _RoundTrippScreenState extends State<RoundTripScreen> {
-  static const List<String> _months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
   DateTime selectedDate = DateTime.now();
 
-  String hour = "05";
-  String minute = "00";
+  final hourController = TextEditingController(text: "05");
+  final minuteController = TextEditingController(text: "00");
   String period = "PM";
 
-  String get formattedDate =>
-      "${selectedDate.day} ${_months[selectedDate.month - 1]} ${selectedDate.year}";
-
-  void changeDate(int value) {
-    setState(() => selectedDate = selectedDate.add(Duration(days: value)));
-  }
-
-  Future<void> openTimePicker() async {
-    final result = await TimePickerSheet.show(
-      context: context,
-      hour: hour,
-      minute: minute,
-      period: period,
-    );
-
-    if (result != null) {
-      setState(() {
-        hour = result["hour"]!;
-        minute = result["minute"]!;
-        period = result["period"]!;
-      });
-    }
+  @override
+  void dispose() {
+    hourController.dispose();
+    minuteController.dispose();
+    super.dispose();
   }
 
   @override
@@ -78,16 +41,15 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
         },
         onNext: () {},
       ),
-      //backgroundColor: AppColors.bg,
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFFFF2C4), // Light yellow
+              Color(0xFFFFF2C4),
               Color(0xFFFFF8E5),
               Colors.white,
               Colors.white,
@@ -95,7 +57,6 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
             stops: [0.0, 0.25, 0.75, 1.0],
           ),
         ),
-
         child: SafeArea(
           child: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
@@ -118,34 +79,6 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: size.height * .015),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      formattedDate,
-                      style: const TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => changeDate(-1),
-                          child: const Icon(Icons.chevron_left),
-                        ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () => changeDate(1),
-                          child: const Icon(Icons.chevron_right),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: size.height * .001),
                 DateSelector(
                   selectedDate: selectedDate,
                   onDateSelected: (date) => setState(() => selectedDate = date),
@@ -160,7 +93,11 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TimeBox(value: hour, onTap: openTimePicker),
+                      PeriodBox(
+                        value: period,
+                        onChanged: (newPeriod) =>
+                            setState(() => period = newPeriod),
+                      ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Text(
@@ -171,9 +108,43 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                           ),
                         ),
                       ),
-                      TimeBox(value: minute, onTap: openTimePicker),
+                      PeriodBox(
+                        value: period,
+                        onChanged: (newPeriod) =>
+                            setState(() => period = newPeriod),
+                      ),
                       const SizedBox(width: 12),
-                      TimeBox(value: period, width: 80, onTap: openTimePicker),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            period = period == "AM" ? "PM" : "AM";
+                          });
+                        },
+                        child: Container(
+                          width: 60,
+                          height: 47,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: .08),
+                                blurRadius: 8,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            period,
+                            style: const TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -200,7 +171,7 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                   amount: "350₹",
                   rate: "150₹/hr",
                 ),
-               SizedBox(height: size.height * .015),
+                SizedBox(height: size.height * .015),
               ],
             ),
           ),

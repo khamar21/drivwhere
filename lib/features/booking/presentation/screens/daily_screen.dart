@@ -5,7 +5,6 @@ import 'package:drivehere/features/booking/presentation/widgets/date_field.dart'
 import 'package:drivehere/features/booking/presentation/widgets/estimate_card.dart';
 import 'package:drivehere/features/booking/presentation/widgets/home_appbar.dart';
 import 'package:drivehere/features/booking/presentation/widgets/time_box.dart';
-import 'package:drivehere/features/booking/presentation/widgets/time_picker_sheet.dart';
 import 'package:drivehere/features/booking/presentation/widgets/vehicle_section.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +19,18 @@ class DailyScreen extends StatefulWidget {
 class _DailyScreenState extends State<DailyScreen> {
   DateTime? fromDate;
   DateTime? toDate;
-  String hour = "8";
-  String minute = "00";
+
+  final hourController = TextEditingController(text: "08");
+  final minuteController = TextEditingController(text: "00");
   String period = "PM";
+
+  @override
+  void dispose() {
+    hourController.dispose();
+    minuteController.dispose();
+    super.dispose();
+  }
+
   Future<void> pickDate(bool isFrom) async {
     final pickedDate = await showDatePicker(
       context: context,
@@ -39,30 +47,16 @@ class _DailyScreenState extends State<DailyScreen> {
       }
     });
   }
+
   String formatDate(DateTime? date) {
     if (date == null) return "Select date";
     return "${date.day}/${date.month}/${date.year}";
   }
-  Future<void> openTimePicker() async {
-    final result = await TimePickerSheet.show(
-      context: context,
-      hour: hour,
-      minute: minute,
-      period: period,
-    );
-    if (result != null) {
-      setState(() {
-        hour = result["hour"]!;
-        minute = result["minute"]!;
-        period = result["period"]!;
-      });
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: AppColors.bg,
       bottomNavigationBar: BottomNavigationWidget(
         onBack: () {
           Navigator.pop(context);
@@ -72,12 +66,12 @@ class _DailyScreenState extends State<DailyScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFFFF2C4), // Light yellow
+              Color(0xFFFFF2C4),
               Color(0xFFFFF8E5),
               Colors.white,
               Colors.white,
@@ -85,7 +79,6 @@ class _DailyScreenState extends State<DailyScreen> {
             stops: [0.0, 0.25, 0.75, 1.0],
           ),
         ),
-
         child: SafeArea(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -94,22 +87,8 @@ class _DailyScreenState extends State<DailyScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: size.height * .02),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Image.asset("assets/images/logo.png", width: 38),
-                //     Image.asset("assets/images/dvrlogo.png", width: 120),
-                //     const Icon(
-                //       Icons.notifications_none_rounded,
-                //       color: AppColors.primary,
-                //       size: 28,
-                //     ),
-                //   ],
-                // ),
-
                 const HomeAppBarWidget(),
-                 SizedBox(height: size.height *.03),
-               // SizedBox(height: size.height * .04),
+                SizedBox(height: size.height * .03),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -158,10 +137,9 @@ class _DailyScreenState extends State<DailyScreen> {
                   },
                 ),
                 const SizedBox(height: 18),
-                Text(
+                const Text(
                   "Hiring driver for x days",
                   textAlign: TextAlign.start,
-                
                   style: TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.w500,
@@ -186,7 +164,11 @@ class _DailyScreenState extends State<DailyScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TimeBox(value: hour, onTap: openTimePicker),
+                      PeriodBox(
+                        value: period,
+                        onChanged: (newPeriod) =>
+                            setState(() => period = newPeriod),
+                      ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Text(
@@ -197,19 +179,53 @@ class _DailyScreenState extends State<DailyScreen> {
                           ),
                         ),
                       ),
-                      TimeBox(value: minute, onTap: openTimePicker),
+                      PeriodBox(
+                        value: period,
+                        onChanged: (newPeriod) =>
+                            setState(() => period = newPeriod),
+                      ),
                       const SizedBox(width: 12),
-                      TimeBox(value: period, width: 80, onTap: openTimePicker),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            period = period == "AM" ? "PM" : "AM";
+                          });
+                        },
+                        child: Container(
+                          width: 60,
+                          height: 47,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: .08),
+                                blurRadius: 8,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            period,
+                            style: const TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(height: size.height * .035),
                 const VehicleSection(),
                 SizedBox(height: size.height * .035),
-                 const Text(
-                    "Estimate",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
+                const Text(
+                  "Estimate",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
                 SizedBox(height: size.height * .02),
                 const EstimateCard(),
                 SizedBox(height: size.height * .10),
