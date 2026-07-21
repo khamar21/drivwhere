@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../core/constants/app_colors.dart';
 
-class PeriodBox extends StatelessWidget {
-  const PeriodBox({
+class TimeBox extends StatefulWidget {
+  const TimeBox({
     super.key,
-    required this.value,
-    required this.onChanged,
+    required this.controller,
     this.width = 70,
+    this.min = 0,
+    this.max = 59,
+    this.onChanged,
   });
 
-  final String value; // "AM" or "PM"
-  final ValueChanged<String> onChanged;
+  final TextEditingController controller;
   final double width;
+  final int min;
+  final int max;
+  final ValueChanged<int>? onChanged;
 
-  void _toggle() => onChanged(value == "AM" ? "PM" : "AM");
+  @override
+  State<TimeBox> createState() => _TimeBoxState();
+}
+
+class _TimeBoxState extends State<TimeBox> {
+  int get _currentValue => int.tryParse(widget.controller.text) ?? widget.min;
+
+  void _setValue(int newValue) {
+    final clamped = newValue.clamp(widget.min, widget.max);
+    widget.controller.text = clamped.toString().padLeft(2, '0');
+    widget.onChanged?.call(clamped);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +52,32 @@ class PeriodBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            value,
-            style: const TextStyle(
-              color: AppColors.primary,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          SizedBox(
+            width: 30,
+            child: TextField(
+              controller: widget.controller,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              maxLength: 2,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(2),
+              ],
+              onChanged: (v) {
+                final parsed = int.tryParse(v);
+                if (parsed != null) widget.onChanged?.call(parsed);
+              },
+              style: const TextStyle(
+                color: AppColors.primary,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                counterText: '',
+                contentPadding: EdgeInsets.zero,
+                isDense: true,
+              ),
             ),
           ),
           const SizedBox(width: 6),
@@ -55,11 +92,11 @@ class PeriodBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: _toggle,
+                onTap: () => _setValue(_currentValue + 1),
                 child: const Icon(Icons.keyboard_arrow_up, size: 16, color: Colors.grey),
               ),
               InkWell(
-                onTap: _toggle,
+                onTap: () => _setValue(_currentValue - 1),
                 child: const Icon(Icons.keyboard_arrow_down, size: 16, color: Colors.grey),
               ),
             ],

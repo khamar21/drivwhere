@@ -93,11 +93,7 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      PeriodBox(
-                        value: period,
-                        onChanged: (newPeriod) =>
-                            setState(() => period = newPeriod),
-                      ),
+                      TimeBox(controller: hourController, min: 1, max: 12),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Text(
@@ -108,11 +104,7 @@ class _RoundTrippScreenState extends State<RoundTripScreen> {
                           ),
                         ),
                       ),
-                      PeriodBox(
-                        value: period,
-                        onChanged: (newPeriod) =>
-                            setState(() => period = newPeriod),
-                      ),
+                      TimeBox(controller: minuteController, min: 0, max: 59),
                       const SizedBox(width: 12),
                       GestureDetector(
                         onTap: () {
