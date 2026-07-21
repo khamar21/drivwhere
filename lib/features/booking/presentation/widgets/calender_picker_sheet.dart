@@ -112,7 +112,7 @@ class _CalendarPickerSheetState extends State<CalendarPickerSheet> {
               children: [
                 const Text(
                   "Select Date",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
@@ -128,10 +128,10 @@ class _CalendarPickerSheetState extends State<CalendarPickerSheet> {
               style: const TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 12,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             // Month navigation pill
             Center(
               child: Container(
@@ -151,11 +151,11 @@ class _CalendarPickerSheetState extends State<CalendarPickerSheet> {
                       ),
                     ),
                     SizedBox(
-                      width: 130,
+                      //width: 130,
                       child: Text(
                         "${_months[_visibleMonth.month - 1]}, ${_visibleMonth.year}",
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
                       ),
                     ),
                     GestureDetector(
