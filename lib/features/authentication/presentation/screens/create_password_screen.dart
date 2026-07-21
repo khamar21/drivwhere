@@ -2,8 +2,8 @@ import 'package:drivehere/core/routes/route_names.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/custom_password_field.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_password_field.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});

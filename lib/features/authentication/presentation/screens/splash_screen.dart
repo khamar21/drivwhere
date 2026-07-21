@@ -2,7 +2,7 @@ import 'package:drivehere/core/routes/route_names.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/widgets/custom_button.dart';
+import '../widgets/custom_button.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

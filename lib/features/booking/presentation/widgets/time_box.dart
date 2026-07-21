@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../../../core/constants/app_colors.dart';
 
 class TimeBox extends StatelessWidget {
   const TimeBox({super.key, required this.value, this.onTap, this.width = 70});

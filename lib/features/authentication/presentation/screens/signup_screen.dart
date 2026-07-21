@@ -1,6 +1,6 @@
 import 'package:drivehere/core/routes/route_names.dart';
-import 'package:drivehere/core/widgets/custom_button.dart';
-import 'package:drivehere/core/widgets/custom_text_field.dart';
+import 'package:drivehere/features/authentication/presentation/widgets/custom_button.dart';
+import 'package:drivehere/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

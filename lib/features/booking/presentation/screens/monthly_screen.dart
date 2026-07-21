@@ -1,9 +1,9 @@
-import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
-import 'package:drivehere/core/widgets/daily_location_card.dart';
-import 'package:drivehere/core/widgets/date_field.dart';
-import 'package:drivehere/core/widgets/estimate_card.dart';
-import 'package:drivehere/core/widgets/home_appbar.dart';
-import 'package:drivehere/core/widgets/vehicle_section.dart';
+import 'package:drivehere/features/booking/presentation/widgets/bottom_navigation_widget.dart';
+import 'package:drivehere/features/booking/presentation/widgets/daily_location_card.dart';
+import 'package:drivehere/features/booking/presentation/widgets/date_field.dart';
+import 'package:drivehere/features/booking/presentation/widgets/estimate_card.dart';
+import 'package:drivehere/features/booking/presentation/widgets/home_appbar.dart';
+import 'package:drivehere/features/booking/presentation/widgets/vehicle_section.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';

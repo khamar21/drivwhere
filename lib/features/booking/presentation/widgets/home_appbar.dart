@@ -1,6 +1,6 @@
+import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../constants/app_colors.dart'; // adjust path as needed
 
 class HomeAppBarWidget extends StatelessWidget {
   const HomeAppBarWidget({super.key, this.onNotificationTap});

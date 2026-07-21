@@ -1,7 +1,7 @@
 import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
-import 'package:drivehere/core/widgets/custom_button.dart';
-import 'package:drivehere/core/widgets/custom_password_field.dart';
+import 'package:drivehere/features/authentication/presentation/widgets/custom_button.dart';
+import 'package:drivehere/features/authentication/presentation/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
 
 class ResetPasswordScreen extends StatefulWidget {

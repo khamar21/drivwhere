@@ -1,15 +1,15 @@
-import 'package:drivehere/core/widgets/bottom_navigation_widget.dart';
-import 'package:drivehere/core/widgets/estimate_card.dart';
-import 'package:drivehere/core/widgets/home_appbar.dart';
-import 'package:drivehere/features/authentication/presentation/screens/round_trip.dart';
+import 'package:drivehere/features/booking/presentation/widgets/bottom_navigation_widget.dart';
+import 'package:drivehere/features/booking/presentation/screens/round_trip.dart';
+import 'package:drivehere/features/booking/presentation/widgets/estimate_card.dart';
+import 'package:drivehere/features/booking/presentation/widgets/home_appbar.dart';
+import 'package:drivehere/features/booking/presentation/widgets/location_card.dart';
+import 'package:drivehere/features/booking/presentation/widgets/vehicle_section.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/widgets/date_selector.dart';
-import '../../../../core/widgets/location_card.dart';
-import '../../../../core/widgets/time_box.dart';
-import '../../../../core/widgets/time_picker_sheet.dart';
-import '../../../../core/widgets/vehicle_section.dart';
+import '../widgets/date_selector.dart';
+import '../widgets/time_box.dart';
+import '../widgets/time_picker_sheet.dart';
 import 'daily_screen.dart';
 
 class PickupDropScreen extends StatefulWidget {
