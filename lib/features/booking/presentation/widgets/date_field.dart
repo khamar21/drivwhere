@@ -13,15 +13,11 @@ class DateField extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-
       borderRadius: BorderRadius.circular(14),
-
       child: Container(
         height: 48,
         width: 390,
-
         padding: const EdgeInsets.symmetric(horizontal: 10),
-
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),

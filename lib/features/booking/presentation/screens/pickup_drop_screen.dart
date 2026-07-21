@@ -145,32 +145,32 @@ class _PickupDropScreenState extends State<PickupDropScreen> {
                 ),
                 SizedBox(height: size.height * .015),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      formattedDate,
-                      style: const TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => changeDate(-1),
-                          child: const Icon(Icons.chevron_left),
-                        ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () => changeDate(1),
-                          child: const Icon(Icons.chevron_right),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       formattedDate,
+                //       style: const TextStyle(
+                //         color: AppColors.primary,
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 15,
+                //       ),
+                //     ),
+                //     Row(
+                //       children: [
+                //         GestureDetector(
+                //           onTap: () => changeDate(-1),
+                //           child: const Icon(Icons.chevron_left),
+                //         ),
+                //         const SizedBox(width: 8),
+                //         GestureDetector(
+                //           onTap: () => changeDate(1),
+                //           child: const Icon(Icons.chevron_right),
+                //         ),
+                //       ],
+                //     ),
+                //   ],
+                // ),
                 SizedBox(height: size.height * .001),
                 DateSelector(
                   selectedDate: selectedDate,
