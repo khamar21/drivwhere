@@ -1,6 +1,7 @@
 import 'package:drivehere/core/constants/app_colors.dart';
 import 'package:drivehere/core/routes/route_names.dart';
 import 'package:drivehere/features/booking/presentation/screens/pickup_drop_screen.dart';
+import 'package:drivehere/features/home/presentation/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/svg.dart';
@@ -68,12 +69,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 2),
                       Center(
-                        child: Text(
-                          "Welcome back!",
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_)=> const HomeScreen()),
+                            );
+                          },
+                          child: Text(
+                            "Welcome back!",
+                            style: TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
                           ),
                         ),
                       ),
